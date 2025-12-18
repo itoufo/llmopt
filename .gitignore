@@ -10,3 +10,8 @@
 
 # OS files
 .DS_Store
+
+sync_config.jsonc
+
+# AI notes (contains credentials)
+ai.md
