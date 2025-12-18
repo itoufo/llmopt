@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# But track themes
+!.gitignore
+!haiia.org/
+!haiia.org/wp-content/
+!haiia.org/wp-content/themes/
+!haiia.org/wp-content/themes/**
+
+# OS files
+.DS_Store
