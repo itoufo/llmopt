@@ -15,3 +15,7 @@ sync_config.jsonc
 
 # AI notes (contains credentials)
 ai.md
+
+# LP source (build only)
+haiia.org/wp-content/themes/lightning-child/lp-src/
+haiia.org/wp-content/themes/lightning-child/templates/lp-assets/index.html
