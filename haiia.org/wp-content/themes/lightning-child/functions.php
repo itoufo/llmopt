@@ -72,25 +72,32 @@ function haiia_redirect_research_report_category() {
  * PMPro チェックアウトフォームのカスタマイズ
  */
 
-// 名前と苗字の順序を入れ替える（苗字を先に）& ラベル変更
-add_action( 'wp_head', 'haiia_pmpro_swap_name_fields_css' );
-function haiia_pmpro_swap_name_fields_css() {
+// 日本式住所入力に最適化（姓名を先頭に、郵便番号→都道府県→市区町村→町域）
+add_action( 'wp_head', 'haiia_pmpro_japanese_address_style' );
+function haiia_pmpro_japanese_address_style() {
     if ( ! function_exists( 'pmpro_is_checkout' ) || ! pmpro_is_checkout() ) {
         return;
     }
     ?>
     <style>
-    /* 請求先住所の名前フィールドを入れ替え（苗字を先に） */
+    /* 日本式住所入力のフィールド順序（CSS order） */
     #pmpro_billing_address_fields .pmpro_form_fields.pmpro_cols-2 {
         display: flex;
         flex-wrap: wrap;
     }
-    #pmpro_billing_address_fields .pmpro_form_field-bfirstname {
-        order: 2;
-    }
-    #pmpro_billing_address_fields .pmpro_form_field-blastname {
-        order: 1;
-    }
+    /* 順序: 姓(1) → 名(2) → 郵便番号(3) → 都道府県(4) → 市区町村(5) → 町域(6) → 建物名(7) → 国(8) → 電話(9) */
+    #pmpro_billing_address_fields .pmpro_form_field-blastname { order: 1; }
+    #pmpro_billing_address_fields .pmpro_form_field-bfirstname { order: 2; }
+    #pmpro_billing_address_fields .pmpro_form_field-bzipcode { order: 3; }
+    #pmpro_billing_address_fields .pmpro_form_field-bstate { order: 4; }
+    #pmpro_billing_address_fields .pmpro_form_field-bcity { order: 5; }
+    #pmpro_billing_address_fields .pmpro_form_field-baddress1 { order: 6; }
+    #pmpro_billing_address_fields .pmpro_form_field-baddress2 { order: 7; }
+    #pmpro_billing_address_fields .pmpro_form_field-bcountry { order: 8; }
+    #pmpro_billing_address_fields .pmpro_form_field-bphone { order: 9; }
+    #pmpro_billing_address_fields .pmpro_form_field-bemail { order: 10; }
+    #pmpro_billing_address_fields .pmpro_form_field-bconfirmemail { order: 11; }
+
     /* 法人名フィールドのスタイル */
     #pmpro_company_name_fields {
         margin-bottom: 20px;
@@ -102,6 +109,10 @@ function haiia_pmpro_swap_name_fields_css() {
     <?php
 }
 
+// 国を日本に固定（選択欄を非表示）
+add_filter( 'pmpro_default_country', function() { return 'JP'; } );
+add_filter( 'pmpro_international_addresses', '__return_false' );
+
 // フィールドラベルを日本語に変更
 add_filter( 'gettext', 'haiia_pmpro_translate_labels', 10, 3 );
 function haiia_pmpro_translate_labels( $translated_text, $text, $domain ) {
@@ -112,6 +123,21 @@ function haiia_pmpro_translate_labels( $translated_text, $text, $domain ) {
                 break;
             case 'Last Name':
                 $translated_text = '姓';
+                break;
+            case 'Address 1':
+                $translated_text = '町域・番地';
+                break;
+            case 'Address 2':
+                $translated_text = '建物名等';
+                break;
+            case 'City':
+                $translated_text = '市区町村';
+                break;
+            case 'State':
+                $translated_text = '都道府県';
+                break;
+            case 'Postal Code':
+                $translated_text = '郵便番号';
                 break;
         }
     }
