@@ -16,6 +16,22 @@ add_filter( 'locale_stylesheet_uri', 'chld_thm_cfg_locale_css' );
 
 // END ENQUEUE PARENT ACTION
 
+/**
+ * TOPページテンプレート用CSSを読み込み
+ */
+add_action( 'wp_enqueue_scripts', 'haiia_enqueue_home_styles' );
+function haiia_enqueue_home_styles() {
+    // TOPページテンプレートが使用されている場合、またはフロントページの場合にCSSを読み込む
+    if ( is_page_template( 'templates/template-home.php' ) || is_front_page() ) {
+        wp_enqueue_style(
+            'haiia-home-style',
+            get_stylesheet_directory_uri() . '/assets/css/home.css',
+            array(),
+            filemtime( get_stylesheet_directory() . '/assets/css/home.css' )
+        );
+    }
+}
+
 // ログアウト後にTOPページへリダイレクト
 add_action( 'wp_logout', function() {
     wp_safe_redirect( home_url('/') );
