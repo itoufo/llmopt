@@ -38,6 +38,21 @@ function haiia_research_report_template( $template ) {
 }
 
 /**
+ * research-reportカテゴリページを固定ページにリダイレクト
+ */
+add_action( 'template_redirect', 'haiia_redirect_research_report_category' );
+function haiia_redirect_research_report_category() {
+    if ( is_category( 'research-report' ) ) {
+        // 固定ページのスラッグを指定
+        $page = get_page_by_path( 'report' );
+        if ( $page ) {
+            wp_redirect( get_permalink( $page->ID ), 301 );
+            exit;
+        }
+    }
+}
+
+/**
  * 調査レポート用 ACF フィールドグループ
  */
 add_action( 'acf/init', 'haiia_register_research_report_fields' );

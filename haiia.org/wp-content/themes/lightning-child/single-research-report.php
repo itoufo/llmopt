@@ -7,6 +7,50 @@
 
 use VektorInc\VK_Breadcrumb\VkBreadcrumb;
 
+// SEO用構造化データ（ペイウォールコンテンツ対応）
+add_action( 'wp_head', function() {
+	if ( ! is_singular() ) return;
+
+	$post_id = get_the_ID();
+	$schema = array(
+		'@context' => 'https://schema.org',
+		'@type' => 'Article',
+		'headline' => get_the_title( $post_id ),
+		'datePublished' => get_the_date( 'c', $post_id ),
+		'dateModified' => get_the_modified_date( 'c', $post_id ),
+		'author' => array(
+			'@type' => 'Organization',
+			'name' => '一般社団法人 健全AI教育協会',
+			'url' => 'https://haiia.org'
+		),
+		'publisher' => array(
+			'@type' => 'Organization',
+			'name' => '一般社団法人 健全AI教育協会',
+			'url' => 'https://haiia.org'
+		),
+		'description' => get_the_excerpt( $post_id ),
+		'isAccessibleForFree' => false,
+		'hasPart' => array(
+			array(
+				'@type' => 'WebPageElement',
+				'isAccessibleForFree' => true,
+				'cssSelector' => '.report-introduction, .report-body, .report-summary'
+			),
+			array(
+				'@type' => 'WebPageElement',
+				'isAccessibleForFree' => false,
+				'cssSelector' => '.report-references, .report-review, .report-about, .report-attachments'
+			)
+		)
+	);
+
+	if ( has_post_thumbnail( $post_id ) ) {
+		$schema['image'] = get_the_post_thumbnail_url( $post_id, 'large' );
+	}
+
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
+}, 5 );
+
 // HTMLヘッド部分
 lightning_get_template_part( 'header' );
 
@@ -103,6 +147,14 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 					</div>
 				</section>
 				<?php endif; ?>
+
+				<?php
+				// ここから会員限定コンテンツ
+				$has_members_content = $report_references || $report_author_review || $report_haiia_opinion || $report_ai_info || $report_attachments;
+
+				if ( $has_members_content ) :
+					if ( is_user_logged_in() ) :
+				?>
 
 				<!-- 参考資料 -->
 				<?php if ( $report_references ) : ?>
@@ -226,6 +278,29 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 				</section>
 				<?php endif; ?>
 
+				<?php else : // 非ログインユーザー ?>
+
+				<!-- フェードアウト演出 -->
+				<div class="content-fade-overlay">
+					<div class="fade-text">
+						<p>参考資料、執筆者レビュー、HAIIAとしての見解・提言、関連資料のダウンロードなど、さらに詳しい内容が続きます...</p>
+					</div>
+				</div>
+
+				<section class="members-only-notice">
+					<div class="members-only-inner">
+						<h2>会員限定コンテンツ</h2>
+						<p>参考資料、執筆者レビュー、HAIIAの見解など、続きをご覧いただくには会員登録（無料）が必要です。</p>
+						<div class="members-only-actions">
+							<a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>" class="btn-login">ログイン</a>
+							<a href="<?php echo esc_url( wp_registration_url() ); ?>" class="btn-register">新規会員登録（無料）</a>
+						</div>
+					</div>
+				</section>
+
+				<?php endif; // is_user_logged_in ?>
+				<?php endif; // has_members_content ?>
+
 				<!-- レポートフッター（固定） -->
 				<div class="report-credit">
 					<div class="credit-divider"></div>
@@ -274,6 +349,14 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 .research-report-single {
 	max-width: 800px;
 	margin: 0 auto;
+}
+
+/* VK系プラグインの要素を非表示 */
+.research-report-single .veu_socialSet,
+.research-report-single .veu_followSet,
+.veu_socialSet-position-after,
+.veu_contentAddSection {
+	display: none !important;
 }
 
 /* レポートヘッダー */
@@ -605,6 +688,92 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 
 .back-to-list:hover {
 	text-decoration: underline;
+}
+
+/* フェードアウト演出 */
+.content-fade-overlay {
+	position: relative;
+	margin-top: -3rem;
+	padding-top: 4rem;
+	background: linear-gradient(to bottom,
+		rgba(255,255,255,0) 0%,
+		rgba(255,255,255,0.8) 30%,
+		rgba(255,255,255,1) 60%
+	);
+}
+
+.fade-text {
+	position: relative;
+	color: #999;
+	font-size: 0.95rem;
+	line-height: 1.7;
+	text-align: center;
+	padding: 1rem 0;
+}
+
+.fade-text p {
+	margin: 0;
+	opacity: 0.7;
+}
+
+/* 会員限定通知 */
+.members-only-notice {
+	margin: 2.5rem 0;
+	padding: 2.5rem;
+	background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+	border-radius: 12px;
+	text-align: center;
+	border: 1px solid #dee2e6;
+}
+
+.members-only-inner h2 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #333;
+	margin: 0 0 1rem;
+}
+
+.members-only-inner p {
+	color: #555;
+	margin-bottom: 1.5rem;
+	line-height: 1.6;
+}
+
+.members-only-actions {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.members-only-actions .btn-login,
+.members-only-actions .btn-register {
+	display: inline-block;
+	padding: 0.75rem 2rem;
+	border-radius: 6px;
+	font-weight: 500;
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+.members-only-actions .btn-login {
+	background: #fff;
+	color: #0066cc;
+	border: 1px solid #0066cc;
+}
+
+.members-only-actions .btn-login:hover {
+	background: #f0f7ff;
+}
+
+.members-only-actions .btn-register {
+	background: #0066cc;
+	color: #fff;
+	border: 1px solid #0066cc;
+}
+
+.members-only-actions .btn-register:hover {
+	background: #0052a3;
 }
 
 /* レスポンシブ対応 */

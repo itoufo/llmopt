@@ -179,56 +179,59 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 					<h2>調査レポート</h2>
 
 					<?php
-					// 子ページ（調査レポート）を取得
-					$child_pages = get_pages( array(
-						'parent'      => get_the_ID(),
-						'sort_column' => 'post_date',
-						'sort_order'  => 'DESC',
+					// 「調査レポート」カテゴリの投稿を取得
+					$report_query = new WP_Query( array(
+						'post_type'      => 'post',
+						'category_name'  => 'research-report',
+						'posts_per_page' => -1,
+						'orderby'        => 'date',
+						'order'          => 'DESC',
 					) );
 
-					if ( $child_pages ) :
+					if ( $report_query->have_posts() ) :
 					?>
 						<div class="reports-grid">
-							<?php foreach ( $child_pages as $child ) : ?>
+							<?php while ( $report_query->have_posts() ) : $report_query->the_post(); ?>
 								<article class="report-card">
-									<?php if ( has_post_thumbnail( $child->ID ) ) : ?>
+									<?php if ( has_post_thumbnail() ) : ?>
 										<div class="report-thumbnail">
-											<a href="<?php echo get_permalink( $child->ID ); ?>">
-												<?php echo get_the_post_thumbnail( $child->ID, 'medium' ); ?>
+											<a href="<?php the_permalink(); ?>">
+												<?php the_post_thumbnail( 'medium' ); ?>
 											</a>
 										</div>
 									<?php endif; ?>
 
 									<div class="report-content">
 										<h3 class="report-title">
-											<a href="<?php echo get_permalink( $child->ID ); ?>">
-												<?php echo esc_html( $child->post_title ); ?>
+											<a href="<?php the_permalink(); ?>">
+												<?php the_title(); ?>
 											</a>
 										</h3>
 
 										<div class="report-meta">
-											<time datetime="<?php echo get_the_date( 'c', $child->ID ); ?>">
-												<?php echo get_the_date( 'Y年n月j日', $child->ID ); ?>
+											<time datetime="<?php echo get_the_date( 'c' ); ?>">
+												<?php echo get_the_date( 'Y年n月j日' ); ?>
 											</time>
 										</div>
 
-										<?php if ( $child->post_excerpt ) : ?>
-											<p class="report-excerpt">
-												<?php echo esc_html( $child->post_excerpt ); ?>
-											</p>
-										<?php else : ?>
-											<p class="report-excerpt">
-												<?php echo wp_trim_words( $child->post_content, 80, '...' ); ?>
-											</p>
-										<?php endif; ?>
+										<p class="report-excerpt">
+											<?php
+											if ( has_excerpt() ) {
+												echo esc_html( get_the_excerpt() );
+											} else {
+												echo wp_trim_words( get_the_content(), 80, '...' );
+											}
+											?>
+										</p>
 
-										<a href="<?php echo get_permalink( $child->ID ); ?>" class="report-link">
+										<a href="<?php the_permalink(); ?>" class="report-link">
 											レポートを読む
 										</a>
 									</div>
 								</article>
-							<?php endforeach; ?>
+							<?php endwhile; ?>
 						</div>
+					<?php wp_reset_postdata(); ?>
 					<?php else : ?>
 						<p class="no-reports">現在公開中の調査レポートはありません。</p>
 					<?php endif; ?>
