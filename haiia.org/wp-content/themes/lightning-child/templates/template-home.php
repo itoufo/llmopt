@@ -118,24 +118,24 @@ if ( apply_filters( 'lightning_default_slide_display', true ) ) {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="has-text-align-center future-a">🚨 富が少数のAIエリートに集中</td>
-                                        <td class="has-text-align-center future-b">✨ すべての人がAIを"学びの相棒"に</td>
+                                        <td class="has-text-align-center future-a">富が少数のAIエリートに集中</td>
+                                        <td class="has-text-align-center future-b">すべての人がAIを"学びの相棒"に</td>
                                     </tr>
                                     <tr>
-                                        <td class="has-text-align-center future-a">🚨 AIリテラシーのない人材は低賃金労働へ</td>
-                                        <td class="has-text-align-center future-b">✨ AI活用で創造的な仕事に集中できる</td>
+                                        <td class="has-text-align-center future-a">AIリテラシーのない人材は低賃金労働へ</td>
+                                        <td class="has-text-align-center future-b">AI活用で創造的な仕事に集中できる</td>
                                     </tr>
                                     <tr>
-                                        <td class="has-text-align-center future-a">🚨 フェイクと分断が社会を蝕む</td>
-                                        <td class="has-text-align-center future-b">✨ 多世代・多文化の協働が進む</td>
+                                        <td class="has-text-align-center future-a">フェイクと分断が社会を蝕む</td>
+                                        <td class="has-text-align-center future-b">多世代・多文化の協働が進む</td>
                                     </tr>
                                     <tr>
-                                        <td class="has-text-align-center future-a">🚨 倫理が欠落し、監視社会が進行</td>
-                                        <td class="has-text-align-center future-b">✨ 人間中心・倫理的なAI社会が実現</td>
+                                        <td class="has-text-align-center future-a">倫理が欠落し、監視社会が進行</td>
+                                        <td class="has-text-align-center future-b">人間中心・倫理的なAI社会が実現</td>
                                     </tr>
                                     <tr>
-                                        <td class="has-text-align-center future-a">🚨 教育格差が固定化し、階層が分断</td>
-                                        <td class="has-text-align-center future-b">✨ すべての子どもに質の高い教育が届く</td>
+                                        <td class="has-text-align-center future-a">教育格差が固定化し、階層が分断</td>
+                                        <td class="has-text-align-center future-b">すべての子どもに質の高い教育が届く</td>
                                     </tr>
                                 </tbody>
                             </table>

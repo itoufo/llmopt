@@ -69,6 +69,135 @@ function haiia_redirect_research_report_category() {
 }
 
 /**
+ * PMPro チェックアウトフォームのカスタマイズ
+ */
+
+// 名前と苗字の順序を入れ替える（苗字を先に）& ラベル変更
+add_action( 'wp_head', 'haiia_pmpro_swap_name_fields_css' );
+function haiia_pmpro_swap_name_fields_css() {
+    if ( ! function_exists( 'pmpro_is_checkout' ) || ! pmpro_is_checkout() ) {
+        return;
+    }
+    ?>
+    <style>
+    /* 請求先住所の名前フィールドを入れ替え（苗字を先に） */
+    #pmpro_billing_address_fields .pmpro_form_fields.pmpro_cols-2 {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #pmpro_billing_address_fields .pmpro_form_field-bfirstname {
+        order: 2;
+    }
+    #pmpro_billing_address_fields .pmpro_form_field-blastname {
+        order: 1;
+    }
+    /* 法人名フィールドのスタイル */
+    #pmpro_company_name_fields {
+        margin-bottom: 20px;
+    }
+    #pmpro_company_name_fields .pmpro_form_field {
+        width: 100%;
+    }
+    </style>
+    <?php
+}
+
+// フィールドラベルを日本語に変更
+add_filter( 'gettext', 'haiia_pmpro_translate_labels', 10, 3 );
+function haiia_pmpro_translate_labels( $translated_text, $text, $domain ) {
+    if ( $domain === 'paid-memberships-pro' ) {
+        switch ( $text ) {
+            case 'First Name':
+                $translated_text = '名';
+                break;
+            case 'Last Name':
+                $translated_text = '姓';
+                break;
+        }
+    }
+    return $translated_text;
+}
+
+// 法人名フィールドをチェックアウトフォームに追加
+add_action( 'pmpro_checkout_boxes', 'haiia_pmpro_add_company_name_field' );
+function haiia_pmpro_add_company_name_field() {
+    global $current_user;
+
+    // 既存の法人名を取得
+    $company_name = '';
+    if ( is_user_logged_in() ) {
+        $company_name = get_user_meta( $current_user->ID, 'pmpro_company_name', true );
+    }
+    if ( isset( $_REQUEST['company_name'] ) ) {
+        $company_name = sanitize_text_field( $_REQUEST['company_name'] );
+    }
+    ?>
+    <fieldset id="pmpro_company_name_fields" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fieldset', 'pmpro_company_name_fields' ) ); ?>">
+        <div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card' ) ); ?>">
+            <div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card_content' ) ); ?>">
+                <legend class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_legend' ) ); ?>">
+                    <h2 class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_heading pmpro_font-large' ) ); ?>">法人情報</h2>
+                </legend>
+                <div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fields' ) ); ?>">
+                    <div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-text pmpro_form_field-company_name', 'pmpro_form_field-company_name' ) ); ?>">
+                        <label for="company_name" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">法人名</label>
+                        <input id="company_name" name="company_name" type="text" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-text', 'company_name' ) ); ?>" value="<?php echo esc_attr( $company_name ); ?>" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <?php
+}
+
+// 法人名フィールドの値を保存
+add_action( 'pmpro_after_checkout', 'haiia_pmpro_save_company_name', 10, 2 );
+function haiia_pmpro_save_company_name( $user_id, $morder ) {
+    if ( isset( $_REQUEST['company_name'] ) ) {
+        $company_name = sanitize_text_field( $_REQUEST['company_name'] );
+        update_user_meta( $user_id, 'pmpro_company_name', $company_name );
+    }
+}
+
+// ユーザー登録時にも法人名を保存
+add_action( 'user_register', 'haiia_pmpro_save_company_name_on_register' );
+function haiia_pmpro_save_company_name_on_register( $user_id ) {
+    if ( isset( $_REQUEST['company_name'] ) ) {
+        $company_name = sanitize_text_field( $_REQUEST['company_name'] );
+        update_user_meta( $user_id, 'pmpro_company_name', $company_name );
+    }
+}
+
+// 管理画面のユーザープロフィールに法人名フィールドを表示
+add_action( 'show_user_profile', 'haiia_pmpro_show_company_name_field' );
+add_action( 'edit_user_profile', 'haiia_pmpro_show_company_name_field' );
+function haiia_pmpro_show_company_name_field( $user ) {
+    ?>
+    <h3>法人情報</h3>
+    <table class="form-table">
+        <tr>
+            <th><label for="pmpro_company_name">法人名</label></th>
+            <td>
+                <input type="text" name="pmpro_company_name" id="pmpro_company_name" value="<?php echo esc_attr( get_user_meta( $user->ID, 'pmpro_company_name', true ) ); ?>" class="regular-text" />
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+// 管理画面でユーザープロフィールの法人名を保存
+add_action( 'personal_options_update', 'haiia_pmpro_save_company_name_field' );
+add_action( 'edit_user_profile_update', 'haiia_pmpro_save_company_name_field' );
+function haiia_pmpro_save_company_name_field( $user_id ) {
+    if ( ! current_user_can( 'edit_user', $user_id ) ) {
+        return false;
+    }
+    if ( isset( $_POST['pmpro_company_name'] ) ) {
+        update_user_meta( $user_id, 'pmpro_company_name', sanitize_text_field( $_POST['pmpro_company_name'] ) );
+    }
+}
+
+/**
  * 調査レポート用 ACF フィールドグループ
  */
 add_action( 'acf/init', 'haiia_register_research_report_fields' );
