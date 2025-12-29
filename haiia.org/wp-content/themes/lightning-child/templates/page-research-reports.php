@@ -179,24 +179,44 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 					<h2>調査レポート</h2>
 
 					<?php
-					// 「調査レポート」カテゴリの投稿を取得
+					// PMProのフィルターを一時的に無効化して全記事を取得
+					remove_filter( 'pre_get_posts', 'pmpro_search_filter' );
+					remove_filter( 'pre_get_posts', 'pmpro_search_filter_pmpro_pages' );
+
 					$report_query = new WP_Query( array(
-						'post_type'      => 'post',
-						'category_name'  => 'research-report',
-						'posts_per_page' => -1,
-						'orderby'        => 'date',
-						'order'          => 'DESC',
+						'post_type'        => 'post',
+						'category_name'    => 'research-report',
+						'posts_per_page'   => -1,
+						'orderby'          => 'date',
+						'order'            => 'DESC',
 					) );
+
+					// フィルターを復元
+					add_filter( 'pre_get_posts', 'pmpro_search_filter' );
+					add_filter( 'pre_get_posts', 'pmpro_search_filter_pmpro_pages' );
 
 					if ( $report_query->have_posts() ) :
 					?>
 						<div class="reports-grid">
-							<?php while ( $report_query->have_posts() ) : $report_query->the_post(); ?>
-								<article class="report-card">
+							<?php while ( $report_query->have_posts() ) : $report_query->the_post();
+								// PMProで会員限定コンテンツかどうかを判定
+								$is_members_only = false;
+								$has_access = true;
+								if ( function_exists( 'pmpro_has_membership_access' ) ) {
+									$has_access = pmpro_has_membership_access( get_the_ID() );
+									if ( ! $has_access ) {
+										$is_members_only = true;
+									}
+								}
+							?>
+								<article class="report-card<?php echo $is_members_only ? ' members-only-card' : ''; ?>">
 									<?php if ( has_post_thumbnail() ) : ?>
 										<div class="report-thumbnail">
 											<a href="<?php the_permalink(); ?>">
 												<?php the_post_thumbnail( 'medium' ); ?>
+												<?php if ( $is_members_only ) : ?>
+													<span class="members-badge">会員限定</span>
+												<?php endif; ?>
 											</a>
 										</div>
 									<?php endif; ?>
@@ -212,6 +232,9 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 											<time datetime="<?php echo get_the_date( 'c' ); ?>">
 												<?php echo get_the_date( 'Y年n月j日' ); ?>
 											</time>
+											<?php if ( $is_members_only && ! has_post_thumbnail() ) : ?>
+												<span class="members-badge-inline">会員限定</span>
+											<?php endif; ?>
 										</div>
 
 										<p class="report-excerpt">
@@ -448,6 +471,7 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 .report-thumbnail {
     flex-shrink: 0;
     width: 180px;
+    position: relative;
 }
 
 .report-thumbnail img {
@@ -455,6 +479,36 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
     height: auto;
     border-radius: 6px;
     object-fit: cover;
+}
+
+/* 会員限定バッジ */
+.members-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.members-badge-inline {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.members-only-card {
+    border: 1px solid #e8e0f0;
 }
 
 .report-content {
