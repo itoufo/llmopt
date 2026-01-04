@@ -1,0 +1,1046 @@
+/**
+ * HAIIA 協会について ページ専用スタイル
+ * 視認性とメリハリを重視したデザイン
+ */
+
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+:root {
+    --haiia-primary: #335e4a;
+    --haiia-primary-dark: #1a3d2e;
+    --haiia-primary-light: #abcaaa;
+    --haiia-accent: #0066cc;
+    --haiia-accent-dark: #004499;
+    --haiia-accent-light: #e8f4fd;
+    --haiia-gold: #d4a853;
+    --haiia-gold-light: #fdf8e8;
+    --haiia-text: #1a1a1a;
+    --haiia-text-muted: #4a5568;
+    --haiia-bg-light: #f8fafc;
+    --haiia-bg-dark: #0f172a;
+    --haiia-border: #e2e8f0;
+    --haiia-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --haiia-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    --haiia-shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.12);
+    --haiia-shadow-colored: 0 10px 40px rgba(51, 94, 74, 0.15);
+    --haiia-radius: 12px;
+    --haiia-radius-lg: 20px;
+    --haiia-radius-xl: 32px;
+}
+
+/* ==========================================================================
+   Page Header - インパクトのあるヘッダー
+   ========================================================================== */
+.haiia-page-header {
+    background: linear-gradient(135deg, var(--haiia-bg-dark) 0%, var(--haiia-primary-dark) 50%, var(--haiia-primary) 100%);
+    padding: 5rem 0;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-page-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.haiia-page-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, rgba(255,255,255,0.05), transparent);
+}
+
+.haiia-page-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.08em;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.haiia-page-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   Base Content Styles
+   ========================================================================== */
+.haiia-about-content {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--haiia-text);
+    padding: 4rem 0;
+}
+
+.haiia-about-content p {
+    margin-bottom: 1.5em;
+    color: var(--haiia-text-muted);
+}
+
+.haiia-about-content strong {
+    color: var(--haiia-text);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Section Styles - セクション共通
+   ========================================================================== */
+.haiia-about-section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--haiia-border);
+}
+
+.haiia-about-section:last-child {
+    border-bottom: none;
+}
+
+.haiia-about-h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--haiia-text);
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
+    position: relative;
+    letter-spacing: 0.02em;
+}
+
+.haiia-about-h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
+    border-radius: 3px;
+}
+
+.haiia-about-intro {
+    font-size: 1.15rem;
+    color: var(--haiia-text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   MVV Section - Mission・Vision・Values（大幅強化）
+   ========================================================================== */
+.haiia-mvv-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.haiia-mvv-item {
+    padding: 3rem;
+    border-radius: var(--haiia-radius-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mission - 深いグリーン背景 */
+.haiia-mission {
+    background: linear-gradient(145deg, var(--haiia-primary-dark) 0%, var(--haiia-primary) 100%);
+    color: #fff;
+    box-shadow: var(--haiia-shadow-colored);
+}
+
+.haiia-mission::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+}
+
+.haiia-mission .haiia-mvv-label {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.haiia-mission h3 {
+    color: #fff;
+}
+
+.haiia-mission p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.haiia-mission .haiia-mvv-lead strong {
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+/* Vision - 明るいアクセント背景 */
+.haiia-vision {
+    background: linear-gradient(145deg, #fff 0%, var(--haiia-accent-light) 100%);
+    border: 2px solid var(--haiia-accent);
+    box-shadow: var(--haiia-shadow);
+}
+
+.haiia-vision .haiia-mvv-label {
+    background: var(--haiia-accent);
+    color: #fff;
+}
+
+.haiia-vision .haiia-mvv-lead strong {
+    color: var(--haiia-accent-dark);
+    font-size: 1.35rem;
+}
+
+/* 共通ラベル */
+.haiia-mvv-label {
+    display: inline-block;
+    background: var(--haiia-bg-dark);
+    color: #fff;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+}
+
+.haiia-mvv-item h3 {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--haiia-text);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-mvv-lead {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-mvv-lead strong {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.haiia-mvv-item > p {
+    position: relative;
+    z-index: 1;
+    line-height: 1.9;
+}
+
+.haiia-mvv-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-mvv-item ul li {
+    padding: 0.8rem 0 0.8rem 2rem;
+    position: relative;
+    color: var(--haiia-text-muted);
+    font-size: 1.05rem;
+}
+
+.haiia-mvv-item ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.15em;
+    width: 10px;
+    height: 10px;
+    background: var(--haiia-accent);
+    border-radius: 50%;
+}
+
+.haiia-mvv-goal {
+    background: var(--haiia-bg-dark);
+    color: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: var(--haiia-radius);
+    text-align: center;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-mvv-goal strong {
+    color: #fff;
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;
+}
+
+/* Values Section - 5つの価値観 */
+.haiia-values-section {
+    background: linear-gradient(180deg, var(--haiia-bg-light) 0%, #fff 100%);
+    padding: 3.5rem;
+    border-radius: var(--haiia-radius-xl);
+    border: 1px solid var(--haiia-border);
+}
+
+.haiia-values-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.haiia-values-header .haiia-mvv-label {
+    background: var(--haiia-gold);
+}
+
+.haiia-values-header h3 {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--haiia-text);
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.haiia-values-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+}
+
+.haiia-value-item {
+    background: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow-sm);
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid var(--haiia-border);
+}
+
+.haiia-value-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--haiia-shadow-lg);
+    border-color: var(--haiia-primary-light);
+}
+
+.haiia-value-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, var(--haiia-primary), var(--haiia-primary-dark));
+    color: #fff;
+    font-weight: 900;
+    font-size: 1.25rem;
+    border-radius: 50%;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 4px 15px rgba(51, 94, 74, 0.3);
+}
+
+.haiia-value-item h4 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.haiia-value-item h4 span {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--haiia-primary);
+    margin-top: 0.35rem;
+    letter-spacing: 0.05em;
+}
+
+.haiia-value-item p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+    color: var(--haiia-text-muted);
+}
+
+/* ==========================================================================
+   Business Section - 目的・事業内容
+   ========================================================================== */
+.haiia-business-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+}
+
+.haiia-business-item {
+    background: #fff;
+    padding: 2.25rem;
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow-sm);
+    transition: all 0.3s ease;
+    border: 1px solid var(--haiia-border);
+    position: relative;
+}
+
+.haiia-business-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
+    border-radius: var(--haiia-radius-lg) var(--haiia-radius-lg) 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.haiia-business-item:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--haiia-shadow);
+    border-color: var(--haiia-primary-light);
+}
+
+.haiia-business-item:hover::before {
+    opacity: 1;
+}
+
+.haiia-business-item h4 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.haiia-business-item p {
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* メイン事業 - 7つの力 */
+.haiia-business-main {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--haiia-bg-dark) 0%, #1e293b 100%);
+    color: #fff;
+    text-align: center;
+    padding: 3.5rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-business-main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-gold), var(--haiia-accent));
+    opacity: 1;
+    border-radius: var(--haiia-radius-lg) var(--haiia-radius-lg) 0 0;
+}
+
+.haiia-business-main::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+}
+
+.haiia-business-main h4 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-skills-tags span {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.haiia-skills-tags span:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Pillars Section - 三本柱
+   ========================================================================== */
+.haiia-pillars-section {
+    background: linear-gradient(180deg, var(--haiia-bg-light) 0%, #fff 100%);
+    margin: 0 -3rem;
+    padding: 4rem 3rem;
+    border-radius: var(--haiia-radius-xl);
+    border-bottom: none;
+}
+
+.haiia-pillars-section .haiia-about-h2 {
+    text-align: center;
+}
+
+.haiia-pillars-section .haiia-about-h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.haiia-pillars-section .haiia-about-intro {
+    text-align: center;
+}
+
+.haiia-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.haiia-pillar-item {
+    background: #fff;
+    padding: 3rem 2.5rem;
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.haiia-pillar-item:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--haiia-shadow-lg);
+    border-color: var(--haiia-primary-light);
+}
+
+.haiia-pillar-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(145deg, var(--haiia-primary), var(--haiia-primary-dark));
+    border-radius: 50%;
+    margin-bottom: 2rem;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(51, 94, 74, 0.3);
+    transition: all 0.3s ease;
+}
+
+.haiia-pillar-item:hover .haiia-pillar-icon {
+    transform: scale(1.1);
+}
+
+.haiia-pillar-icon svg {
+    width: 48px;
+    height: 48px;
+}
+
+.haiia-pillar-item h4 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    margin-bottom: 1rem;
+}
+
+.haiia-pillar-item p {
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   History Section - 沿革
+   ========================================================================== */
+.haiia-info-card {
+    background: #fff;
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow);
+    overflow: hidden;
+    border: 1px solid var(--haiia-border);
+}
+
+.haiia-info-list {
+    margin: 0;
+}
+
+.haiia-info-row {
+    display: flex;
+    border-bottom: 1px solid var(--haiia-border);
+}
+
+.haiia-info-row:last-child {
+    border-bottom: none;
+}
+
+.haiia-info-row dt {
+    flex: 0 0 220px;
+    background: linear-gradient(135deg, var(--haiia-bg-light), #fff);
+    padding: 1.5rem 2rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    font-size: 1.05rem;
+}
+
+.haiia-info-row dd {
+    flex: 1;
+    padding: 1.5rem 2rem;
+    margin: 0;
+    color: var(--haiia-text-muted);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* ==========================================================================
+   Officers Section - 役員
+   ========================================================================== */
+.haiia-officers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.haiia-officer-item {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow-sm);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid var(--haiia-border);
+}
+
+.haiia-officer-item:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--haiia-shadow);
+}
+
+/* 代表理事 - 特別デザイン */
+.haiia-officer-representative {
+    background: linear-gradient(145deg, var(--haiia-bg-dark) 0%, #1e293b 100%);
+    color: #fff;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-officer-representative::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-gold), var(--haiia-primary));
+}
+
+.haiia-officer-role {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    background: var(--haiia-bg-light);
+    color: var(--haiia-primary-dark);
+}
+
+.haiia-officer-representative .haiia-officer-role {
+    background: var(--haiia-gold);
+    color: var(--haiia-bg-dark);
+}
+
+.haiia-officer-name {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    letter-spacing: 0.05em;
+}
+
+.haiia-officer-representative .haiia-officer-name {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+/* ==========================================================================
+   Access Section - アクセス
+   ========================================================================== */
+.haiia-access-content {
+    background: #fff;
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow);
+    overflow: hidden;
+    border: 1px solid var(--haiia-border);
+}
+
+.haiia-address {
+    padding: 2.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--haiia-bg-light), #fff);
+    border-bottom: 1px solid var(--haiia-border);
+}
+
+.haiia-postal {
+    font-size: 1rem;
+    color: var(--haiia-text-muted);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.haiia-address-text {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.haiia-map {
+    padding: 1.5rem;
+}
+
+.haiia-map iframe {
+    display: block;
+    width: 100%;
+    height: 420px;
+    border: none;
+    border-radius: var(--haiia-radius);
+    box-shadow: var(--haiia-shadow-sm);
+}
+
+/* ==========================================================================
+   Document CTA Section - 定款PDF
+   ========================================================================== */
+.haiia-document-section {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.haiia-document-cta {
+    background: linear-gradient(145deg, var(--haiia-bg-dark) 0%, #1e293b 100%);
+    padding: 4rem;
+    border-radius: var(--haiia-radius-xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-document-cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-gold), var(--haiia-accent));
+}
+
+.haiia-document-cta::after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+}
+
+.haiia-document-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-document-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.25rem 3rem;
+    background: linear-gradient(135deg, #fff, #f8fafc);
+    color: var(--haiia-bg-dark) !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.15rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-document-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.haiia-document-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* ==========================================================================
+   Responsive - レスポンシブ
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .haiia-values-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .haiia-values-grid .haiia-value-item:nth-child(4),
+    .haiia-values-grid .haiia-value-item:nth-child(5) {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .haiia-values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .haiia-business-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .haiia-business-main {
+        grid-column: 1 / -1;
+    }
+
+    .haiia-officers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .haiia-pillars-section {
+        margin: 0 -1.5rem;
+        padding: 3rem 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .haiia-page-header {
+        padding: 4rem 0;
+    }
+
+    .haiia-page-title {
+        font-size: 2.25rem;
+    }
+
+    .haiia-about-content {
+        padding: 3rem 0;
+    }
+
+    .haiia-about-section {
+        padding: 3rem 0;
+    }
+
+    .haiia-about-h2 {
+        font-size: 1.65rem;
+    }
+
+    .haiia-mvv-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .haiia-mvv-item {
+        padding: 2.5rem;
+    }
+
+    .haiia-values-section {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .haiia-values-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+    }
+
+    .haiia-value-item {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .haiia-business-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .haiia-business-main {
+        padding: 2.5rem 2rem;
+    }
+
+    .haiia-pillars-section {
+        margin: 0 -1rem;
+        padding: 2.5rem 1rem;
+    }
+
+    .haiia-pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .haiia-pillar-item {
+        padding: 2.5rem 2rem;
+    }
+
+    .haiia-info-row {
+        flex-direction: column;
+    }
+
+    .haiia-info-row dt {
+        flex: none;
+        padding: 1.25rem 1.5rem;
+    }
+
+    .haiia-info-row dd {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .haiia-officers-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+    }
+
+    .haiia-officer-item {
+        padding: 2rem 1.5rem;
+    }
+
+    .haiia-officer-name {
+        font-size: 1.2rem;
+    }
+
+    .haiia-officer-representative .haiia-officer-name {
+        font-size: 1.3rem;
+    }
+
+    .haiia-address {
+        padding: 2rem;
+    }
+
+    .haiia-address-text {
+        font-size: 1.15rem;
+    }
+
+    .haiia-map {
+        padding: 1rem;
+    }
+
+    .haiia-map iframe {
+        height: 320px;
+    }
+
+    .haiia-document-cta {
+        padding: 3rem 2rem;
+    }
+
+    .haiia-document-btn {
+        padding: 1rem 2.5rem;
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .haiia-page-title {
+        font-size: 1.85rem;
+    }
+
+    .haiia-page-subtitle {
+        font-size: 1rem;
+    }
+
+    .haiia-values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .haiia-officers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .haiia-mvv-item {
+        padding: 2rem;
+    }
+
+    .haiia-mvv-item h3 {
+        font-size: 1.5rem;
+    }
+
+    .haiia-skills-tags span {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.25rem;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+@media print {
+    .haiia-page-header,
+    .haiia-business-main,
+    .haiia-mvv-goal,
+    .haiia-officer-representative,
+    .haiia-document-cta,
+    .haiia-mission {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+    }
+
+    .haiia-mission p,
+    .haiia-mission .haiia-mvv-lead strong {
+        color: #000 !important;
+    }
+
+    .haiia-pillar-icon,
+    .haiia-value-num {
+        background: #ccc !important;
+    }
+
+    .haiia-document-btn {
+        border: 1px solid #000 !important;
+        background: #fff !important;
+        color: #000 !important;
+    }
+}

@@ -1,5 +1,6 @@
 /**
  * HAIIA TOPページ専用スタイル
+ * メリハリのあるモダンデザイン
  */
 
 /* ==========================================================================
@@ -7,84 +8,117 @@
    ========================================================================== */
 :root {
     --haiia-primary: #335e4a;
-    --haiia-primary-dark: #294b3b;
+    --haiia-primary-dark: #1a3d2e;
     --haiia-primary-light: #abcaaa;
     --haiia-accent: #0066cc;
-    --haiia-accent-hover: #00cc66;
-    --haiia-warning: #cf2e2e;
-    --haiia-success: #00d084;
-    --haiia-text: #222222;
-    --haiia-text-light: #666666;
-    --haiia-bg-light: #f8f9fa;
-    --haiia-bg-secondary: rgba(0, 0, 0, 0.05);
-    --haiia-border: #e0e0e0;
-    --haiia-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --haiia-accent-dark: #004499;
+    --haiia-warning: #c0392b;
+    --haiia-warning-bg: #fef2f2;
+    --haiia-success: #27ae60;
+    --haiia-success-bg: #f0fdf4;
+    --haiia-text: #1a1a1a;
+    --haiia-text-muted: #555555;
+    --haiia-bg-light: #f7f9fc;
+    --haiia-bg-dark: #0f172a;
+    --haiia-border: #e2e8f0;
+    --haiia-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --haiia-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --haiia-shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
     --haiia-radius: 8px;
     --haiia-radius-lg: 16px;
+    --haiia-radius-xl: 24px;
 }
 
 /* ==========================================================================
    Base Styles
    ========================================================================== */
 .haiia-home .haiia-home-content {
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: 1.05rem;
+    line-height: 1.9;
     color: var(--haiia-text);
 }
 
 .haiia-home-content p {
     margin-bottom: 1.5em;
+    color: var(--haiia-text-muted);
 }
 
 .haiia-home-content strong {
-    color: var(--haiia-primary-dark);
+    color: var(--haiia-text);
+    font-weight: 700;
 }
 
 /* ==========================================================================
    Section Styles
    ========================================================================== */
 .haiia-section {
-    padding: 3rem 0;
+    padding: 4rem 0;
 }
 
 .haiia-section:first-child {
     padding-top: 2rem;
 }
 
-/* Titles */
+/* Main Title - 大見出し */
 .haiia-main-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--haiia-primary);
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 3px solid var(--haiia-primary);
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    position: relative;
+    letter-spacing: -0.02em;
 }
 
+.haiia-main-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
+    border-radius: 2px;
+}
+
+/* Section Title - 中見出し */
 .haiia-section-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--haiia-primary-dark);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--haiia-text);
     margin-bottom: 1.5rem;
+    line-height: 1.5;
 }
 
+/* Subtitle - 小見出し */
 .haiia-subtitle {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    color: var(--haiia-text);
+    color: var(--haiia-text-muted);
 }
 
+/* Highlight Box - 強調ボックス */
 .haiia-highlight {
     text-align: center;
-    font-size: 1.75rem;
-    line-height: 1.6;
-    padding: 2rem;
-    background: linear-gradient(135deg, var(--haiia-primary-light) 0%, #e9fbe5 100%);
-    border-radius: var(--haiia-radius-lg);
+    font-size: 1.5rem;
+    line-height: 1.7;
+    padding: 3rem 2rem;
+    background: var(--haiia-bg-dark);
+    color: #fff;
+    border-radius: var(--haiia-radius-xl);
+    margin: 2rem 0;
 }
 
-/* Lists */
+.haiia-highlight strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
 .haiia-list {
     list-style: none;
     padding-left: 0;
@@ -92,16 +126,21 @@
 }
 
 .haiia-list li {
-    padding-left: 1.75rem;
+    padding: 0.75rem 0 0.75rem 2rem;
     position: relative;
-    margin-bottom: 0.75rem;
+    color: var(--haiia-text-muted);
+    border-bottom: 1px solid var(--haiia-border);
+}
+
+.haiia-list li:last-child {
+    border-bottom: none;
 }
 
 .haiia-list li::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 0.6em;
+    top: 1.1em;
     width: 8px;
     height: 8px;
     background: var(--haiia-primary);
@@ -116,18 +155,19 @@
 
 .haiia-numbered-list li {
     counter-increment: step;
-    padding-left: 2.5rem;
+    padding: 1rem 0 1rem 3.5rem;
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--haiia-text-muted);
 }
 
 .haiia-numbered-list li::before {
     content: counter(step);
     position: absolute;
     left: 0;
-    top: 0;
-    width: 1.75rem;
-    height: 1.75rem;
+    top: 0.75rem;
+    width: 2rem;
+    height: 2rem;
     background: var(--haiia-primary);
     color: #fff;
     border-radius: 50%;
@@ -139,24 +179,49 @@
 }
 
 /* ==========================================================================
-   Gap Section
+   Gap Section - 格差セクション
    ========================================================================== */
-.haiia-gap-item {
+.haiia-gaps {
     background: var(--haiia-bg-light);
-    padding: 1.5rem 2rem;
+    margin: 0 -2rem;
+    padding: 4rem 2rem;
+    border-radius: var(--haiia-radius-xl);
+}
+
+.haiia-gap-item {
+    background: #fff;
+    padding: 2rem;
     margin-bottom: 1.5rem;
-    border-radius: var(--haiia-radius);
-    border-left: 4px solid var(--haiia-primary);
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.haiia-gap-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--haiia-shadow-lg);
 }
 
 .haiia-gap-item h4 {
-    color: var(--haiia-primary);
-    font-size: 1.25rem;
+    color: var(--haiia-primary-dark);
+    font-size: 1.3rem;
+    font-weight: 700;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.haiia-gap-item h4::before {
+    content: "";
+    width: 4px;
+    height: 1.3rem;
+    background: var(--haiia-primary);
+    border-radius: 2px;
 }
 
 /* ==========================================================================
-   Comparison Table
+   Comparison Table - 比較テーブル
    ========================================================================== */
 .haiia-comparison-table {
     overflow-x: auto;
@@ -165,18 +230,28 @@
 
 .haiia-comparison-table table {
     width: 100%;
-    border-collapse: collapse;
-    border-radius: var(--haiia-radius);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--haiia-radius-lg);
     overflow: hidden;
-    box-shadow: var(--haiia-shadow);
+    box-shadow: var(--haiia-shadow-lg);
 }
 
 .haiia-comparison-table th {
-    background: var(--haiia-primary);
+    background: var(--haiia-primary-dark);
     color: #fff;
-    padding: 1.25rem 1rem;
-    font-size: 1.1rem;
-    font-weight: 600;
+    padding: 1.5rem 1.25rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.haiia-comparison-table th:first-child {
+    background: var(--haiia-warning);
+}
+
+.haiia-comparison-table th:last-child {
+    background: var(--haiia-success);
 }
 
 .haiia-comparison-table th strong {
@@ -184,116 +259,158 @@
 }
 
 .haiia-comparison-table td {
-    padding: 1rem;
-    border-bottom: 1px solid var(--haiia-border);
+    padding: 1.25rem;
     vertical-align: middle;
+    font-size: 1rem;
+    text-align: center;
 }
 
-.haiia-comparison-table tr:last-child td {
-    border-bottom: none;
+.haiia-comparison-table tr:nth-child(even) td {
+    background: rgba(0, 0, 0, 0.02);
 }
 
 .haiia-comparison-table .future-a {
-    background: #fff5f5;
-    color: #8b0000;
-    font-weight: 500;
+    background: var(--haiia-warning-bg);
+    color: var(--haiia-warning);
+    font-weight: 600;
+    border-right: 1px solid var(--haiia-border);
 }
 
 .haiia-comparison-table .future-b {
-    background: #f0fff4;
-    color: #006400;
-    font-weight: 500;
+    background: var(--haiia-success-bg);
+    color: var(--haiia-success);
+    font-weight: 600;
 }
 
 /* ==========================================================================
-   Future Detail Boxes
+   Future Detail Boxes - 未来詳細ボックス
    ========================================================================== */
 .haiia-future-box {
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: var(--haiia-radius-lg);
     margin: 2rem 0;
 }
 
+.haiia-future-box h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.haiia-future-box p {
+    margin-bottom: 1.25rem;
+}
+
 .haiia-future-a {
-    background: linear-gradient(135deg, #fff5f5 0%, #ffe4e4 100%);
-    border: 1px solid #ffcccc;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border: 2px solid #fecaca;
 }
 
 .haiia-future-a h4 {
-    color: #c0392b;
+    color: var(--haiia-warning);
 }
 
 .haiia-future-b {
-    background: linear-gradient(135deg, #f0fff4 0%, #dcffe4 100%);
-    border: 1px solid #a3e4b0;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 2px solid #bbf7d0;
 }
 
 .haiia-future-b h4 {
-    color: #27ae60;
+    color: var(--haiia-success);
 }
 
 /* ==========================================================================
-   Skills Grid
+   Skills Section - スキルセクション
    ========================================================================== */
 .haiia-skill-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     margin: 2rem 0;
 }
 
 .haiia-skill-item {
     background: #fff;
-    padding: 1.5rem;
-    border-radius: var(--haiia-radius);
+    padding: 2rem;
+    border-radius: var(--haiia-radius-lg);
     box-shadow: var(--haiia-shadow);
-    border-top: 4px solid var(--haiia-primary);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.haiia-skill-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
 }
 
 .haiia-skill-item:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--haiia-shadow-lg);
 }
 
 .haiia-skill-item h5 {
-    color: var(--haiia-primary);
-    font-size: 1.1rem;
+    color: var(--haiia-text);
+    font-size: 1.15rem;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 /* ==========================================================================
-   Pyramid Section
+   Pyramid Section - ピラミッド図
    ========================================================================== */
-.haiia-pyramid-image {
+.haiia-pyramid {
+    background: var(--haiia-bg-light);
+    margin: 0 -2rem;
+    padding: 4rem 2rem;
+    border-radius: var(--haiia-radius-xl);
     text-align: center;
-    margin: 2rem 0;
+}
+
+.haiia-pyramid-image {
+    margin: 2rem auto;
+    max-width: 100%;
 }
 
 .haiia-pyramid-image img {
     max-width: 100%;
     height: auto;
-    border-radius: var(--haiia-radius);
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow-lg);
 }
 
 /* ==========================================================================
-   Layer Items
+   Layer Items - 層別説明
    ========================================================================== */
 .haiia-layer-item {
-    background: var(--haiia-bg-light);
-    padding: 2rem;
-    border-radius: var(--haiia-radius);
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: var(--haiia-radius-lg);
     margin: 1.5rem 0;
+    box-shadow: var(--haiia-shadow);
 }
 
 .haiia-layer-item h4 {
-    color: var(--haiia-primary);
+    color: var(--haiia-text);
     margin-bottom: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.haiia-layer-item h4 strong {
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* ==========================================================================
-   Steps Section
+   Steps Section - ステップセクション
    ========================================================================== */
 .haiia-steps {
     margin: 2rem 0;
@@ -301,18 +418,29 @@
 
 .haiia-step {
     background: #fff;
-    padding: 2rem;
-    margin-bottom: 0;
-    border-radius: var(--haiia-radius);
+    padding: 2.5rem;
+    border-radius: var(--haiia-radius-lg);
     box-shadow: var(--haiia-shadow);
+    position: relative;
 }
 
 .haiia-step h3 {
-    color: var(--haiia-primary);
+    color: var(--haiia-text);
     font-size: 1.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--haiia-primary-light);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.haiia-step h3::before {
+    content: "";
+    width: 8px;
+    height: 100%;
+    min-height: 2rem;
+    background: linear-gradient(180deg, var(--haiia-primary), var(--haiia-accent));
+    border-radius: 4px;
 }
 
 .haiia-level-list {
@@ -321,42 +449,58 @@
 }
 
 .haiia-level-list li {
-    padding: 1rem 1.5rem;
-    margin-bottom: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
     background: var(--haiia-bg-light);
     border-radius: var(--haiia-radius);
-    border-left: 4px solid var(--haiia-primary);
+    transition: background 0.2s ease;
 }
 
+.haiia-level-list li:hover {
+    background: #eef2ff;
+}
+
+.haiia-level-list li strong {
+    display: block;
+    color: var(--haiia-text);
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+}
+
+/* CTA Link */
 .haiia-cta-link {
     display: inline-block;
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
-    background: var(--haiia-primary);
+    margin-top: 1.5rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--haiia-accent), var(--haiia-accent-dark));
     color: #fff !important;
     text-decoration: none;
-    border-radius: var(--haiia-radius);
-    transition: background 0.3s ease;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.35);
+}
+
+.haiia-cta-link strong {
+    color: #fff !important;
 }
 
 .haiia-cta-link:hover {
-    background: var(--haiia-accent-hover);
-    color: #fff !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* 診断リンク特別スタイル */
-.haiia-step .haiia-cta-link {
-    background: linear-gradient(135deg, var(--haiia-primary) 0%, var(--haiia-accent) 100%);
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.45);
 }
 
 /* ==========================================================================
-   Membership Table
+   Membership Table - 会員テーブル
    ========================================================================== */
+.haiia-membership {
+    background: var(--haiia-bg-light);
+    margin: 0 -2rem;
+    padding: 4rem 2rem;
+    border-radius: var(--haiia-radius-xl);
+}
+
 .haiia-table-wrapper {
     overflow-x: auto;
     margin: 2rem 0;
@@ -364,40 +508,49 @@
 
 .haiia-membership-table {
     width: 100%;
-    border-collapse: collapse;
-    box-shadow: var(--haiia-shadow);
-    border-radius: var(--haiia-radius);
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: var(--haiia-radius-lg);
     overflow: hidden;
+    box-shadow: var(--haiia-shadow-lg);
 }
 
 .haiia-membership-table th {
-    background: var(--haiia-primary);
+    background: var(--haiia-primary-dark);
     color: #fff;
-    padding: 1rem;
-    font-weight: 600;
+    padding: 1.25rem 1rem;
+    font-weight: 700;
     text-align: left;
+    font-size: 0.95rem;
 }
 
 .haiia-membership-table td {
-    padding: 1rem;
+    padding: 1.25rem 1rem;
     border-bottom: 1px solid var(--haiia-border);
     vertical-align: top;
+    font-size: 0.95rem;
 }
 
 .haiia-membership-table tr:last-child td {
     border-bottom: none;
 }
 
-.haiia-membership-table tr:nth-child(even) {
-    background: var(--haiia-bg-light);
+.haiia-membership-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.haiia-membership-table td:first-child {
+    font-weight: 700;
+    color: var(--haiia-primary-dark);
 }
 
 /* ==========================================================================
-   Reason Grid
+   Reason Grid - 理由グリッド
    ========================================================================== */
 .haiia-reason-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin: 2rem 0;
 }
@@ -405,36 +558,68 @@
 .haiia-reason-item {
     background: #fff;
     padding: 2rem;
-    border-radius: var(--haiia-radius);
+    border-radius: var(--haiia-radius-lg);
     box-shadow: var(--haiia-shadow);
-    border-bottom: 4px solid var(--haiia-primary);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.haiia-reason-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
+    border-radius: 0 0 var(--haiia-radius-lg) var(--haiia-radius-lg);
+}
+
+.haiia-reason-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--haiia-shadow-lg);
 }
 
 .haiia-reason-item h4 {
-    color: var(--haiia-primary);
+    color: var(--haiia-text);
     font-size: 1.25rem;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 /* ==========================================================================
-   CTA Section
+   CTA Section - CTAセクション
    ========================================================================== */
 .haiia-cta {
-    margin-top: 3rem;
+    margin-top: 4rem;
 }
 
 .haiia-cta-box {
-    background: linear-gradient(135deg, var(--haiia-primary) 0%, var(--haiia-primary-dark) 100%);
-    padding: 3rem;
-    border-radius: var(--haiia-radius-lg);
+    background: linear-gradient(135deg, var(--haiia-primary-dark) 0%, var(--haiia-primary) 50%, var(--haiia-accent) 100%);
+    padding: 4rem 3rem;
+    border-radius: var(--haiia-radius-xl);
     text-align: center;
     color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-cta-box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    pointer-events: none;
 }
 
 .haiia-cta-title {
     font-size: 2rem;
     margin-bottom: 2rem;
     color: #fff;
+    font-weight: 800;
 }
 
 .haiia-cta-buttons {
@@ -446,71 +631,87 @@
 
 .haiia-btn {
     display: inline-block;
-    padding: 1rem 2.5rem;
+    padding: 1.1rem 3rem;
     font-size: 1.1rem;
     font-weight: 700;
     text-decoration: none;
-    border-radius: var(--haiia-radius);
+    border-radius: 50px;
     transition: all 0.3s ease;
 }
 
 .haiia-btn-primary {
     background: #fff;
-    color: var(--haiia-primary) !important;
-    border: 2px solid #fff;
+    color: var(--haiia-primary-dark) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .haiia-btn-primary:hover {
-    background: var(--haiia-accent-hover);
-    border-color: var(--haiia-accent-hover);
-    color: #fff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .haiia-btn-secondary {
     background: transparent;
     color: #fff !important;
-    border: 2px solid #fff;
+    border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 .haiia-btn-secondary:hover {
-    background: #fff;
-    color: var(--haiia-primary) !important;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
 }
 
 /* ==========================================================================
-   Separators
+   Separators - セパレーター
    ========================================================================== */
 .haiia-home-content hr.wp-block-separator {
     border: none;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--haiia-border), transparent);
-    margin: 2rem 0;
+    background: transparent;
+    margin: 3rem 0;
 }
 
 /* ==========================================================================
-   Responsive
+   Responsive - レスポンシブ
    ========================================================================== */
+@media (max-width: 1024px) {
+    .haiia-skill-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .haiia-reason-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .haiia-section {
-        padding: 2rem 0;
+        padding: 3rem 0;
     }
 
     .haiia-main-title {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
 
     .haiia-section-title {
-        font-size: 1.25rem;
+        font-size: 1.35rem;
     }
 
     .haiia-highlight {
-        font-size: 1.25rem;
-        padding: 1.5rem;
+        font-size: 1.2rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .haiia-gaps,
+    .haiia-pyramid,
+    .haiia-membership {
+        margin: 0 -1rem;
+        padding: 3rem 1rem;
     }
 
     .haiia-comparison-table th,
     .haiia-comparison-table td {
-        padding: 0.75rem;
+        padding: 1rem 0.75rem;
         font-size: 0.9rem;
     }
 
@@ -521,7 +722,7 @@
     }
 
     .haiia-cta-box {
-        padding: 2rem 1.5rem;
+        padding: 3rem 1.5rem;
     }
 
     .haiia-cta-title {
@@ -529,22 +730,24 @@
     }
 
     .haiia-btn {
-        padding: 0.75rem 2rem;
+        padding: 1rem 2rem;
         font-size: 1rem;
+        width: 100%;
+        text-align: center;
     }
 
-    .haiia-skill-grid,
-    .haiia-reason-grid {
-        grid-template-columns: 1fr;
+    .haiia-cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
     }
 
     .haiia-membership-table {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .haiia-membership-table th,
     .haiia-membership-table td {
-        padding: 0.75rem;
+        padding: 1rem 0.75rem;
     }
 }
 
@@ -552,6 +755,7 @@
    Print Styles
    ========================================================================== */
 @media print {
+    .haiia-highlight,
     .haiia-cta-box {
         background: #f0f0f0 !important;
         color: #000 !important;

@@ -32,6 +32,51 @@ function haiia_enqueue_home_styles() {
     }
 }
 
+/**
+ * 協会についてページテンプレート用CSSを読み込み
+ */
+add_action( 'wp_enqueue_scripts', 'haiia_enqueue_about_styles' );
+function haiia_enqueue_about_styles() {
+    if ( is_page_template( 'templates/template-about.php' ) ) {
+        wp_enqueue_style(
+            'haiia-about-style',
+            get_stylesheet_directory_uri() . '/assets/css/about.css',
+            array(),
+            filemtime( get_stylesheet_directory() . '/assets/css/about.css' )
+        );
+    }
+}
+
+/**
+ * 協会活動ページテンプレート用CSSを読み込み
+ */
+add_action( 'wp_enqueue_scripts', 'haiia_enqueue_activities_styles' );
+function haiia_enqueue_activities_styles() {
+    if ( is_page_template( 'templates/template-activities.php' ) ) {
+        wp_enqueue_style(
+            'haiia-activities-style',
+            get_stylesheet_directory_uri() . '/assets/css/activities.css',
+            array(),
+            filemtime( get_stylesheet_directory() . '/assets/css/activities.css' )
+        );
+    }
+}
+
+/**
+ * 教育・研修プログラムページテンプレート用CSSを読み込み
+ */
+add_action( 'wp_enqueue_scripts', 'haiia_enqueue_programs_styles' );
+function haiia_enqueue_programs_styles() {
+    if ( is_page_template( 'templates/template-programs.php' ) ) {
+        wp_enqueue_style(
+            'haiia-programs-style',
+            get_stylesheet_directory_uri() . '/assets/css/programs.css',
+            array(),
+            filemtime( get_stylesheet_directory() . '/assets/css/programs.css' )
+        );
+    }
+}
+
 // ログアウト後にTOPページへリダイレクト
 add_action( 'wp_logout', function() {
     wp_safe_redirect( home_url('/') );
@@ -221,6 +266,175 @@ function haiia_pmpro_save_company_name_field( $user_id ) {
     if ( isset( $_POST['pmpro_company_name'] ) ) {
         update_user_meta( $user_id, 'pmpro_company_name', sanitize_text_field( $_POST['pmpro_company_name'] ) );
     }
+}
+
+/**
+ * 法人賛助会員ページテンプレート用CSSを読み込み
+ */
+add_action( 'wp_enqueue_scripts', 'haiia_enqueue_sponsors_styles' );
+function haiia_enqueue_sponsors_styles() {
+    if ( is_page_template( 'templates/template-sponsors.php' ) ) {
+        wp_enqueue_style(
+            'haiia-sponsors-style',
+            get_stylesheet_directory_uri() . '/assets/css/sponsors.css',
+            array(),
+            filemtime( get_stylesheet_directory() . '/assets/css/sponsors.css' )
+        );
+    }
+}
+
+/**
+ * 法人賛助会員ページ用 ACF フィールドグループ
+ * ギャラリーフィールドを使用して不特定多数のロゴを管理
+ * - 画像タイトル: 企業名
+ * - 画像キャプション: リンク先URL
+ */
+add_action( 'acf/init', 'haiia_register_sponsors_fields' );
+function haiia_register_sponsors_fields() {
+    if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+        return;
+    }
+
+    acf_add_local_field_group( array(
+        'key' => 'group_sponsors_page',
+        'title' => '法人賛助会員設定',
+        'fields' => array(
+            // ページサブタイトル
+            array(
+                'key' => 'field_sponsors_subtitle',
+                'label' => 'ページサブタイトル',
+                'name' => 'sponsors_subtitle',
+                'type' => 'text',
+                'instructions' => '英語サブタイトル（デフォルト: Corporate Sponsors）',
+                'required' => 0,
+                'placeholder' => 'Corporate Sponsors',
+            ),
+            // イントロダクション
+            array(
+                'key' => 'field_sponsors_introduction',
+                'label' => 'イントロダクション',
+                'name' => 'sponsors_introduction',
+                'type' => 'wysiwyg',
+                'instructions' => 'ページ上部に表示される紹介文',
+                'required' => 0,
+                'tabs' => 'all',
+                'toolbar' => 'basic',
+                'media_upload' => 0,
+            ),
+            // プラチナスポンサー
+            array(
+                'key' => 'field_sponsors_platinum',
+                'label' => 'プラチナスポンサー',
+                'name' => 'sponsors_platinum',
+                'type' => 'gallery',
+                'instructions' => 'プラチナスポンサーのロゴ画像を追加してください。<br><strong>画像タイトル</strong>: 企業名、<strong>キャプション</strong>: リンク先URL',
+                'required' => 0,
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'min' => 0,
+                'max' => '',
+            ),
+            // ゴールドスポンサー
+            array(
+                'key' => 'field_sponsors_gold',
+                'label' => 'ゴールドスポンサー',
+                'name' => 'sponsors_gold',
+                'type' => 'gallery',
+                'instructions' => 'ゴールドスポンサーのロゴ画像を追加してください。<br><strong>画像タイトル</strong>: 企業名、<strong>キャプション</strong>: リンク先URL',
+                'required' => 0,
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'min' => 0,
+                'max' => '',
+            ),
+            // シルバースポンサー
+            array(
+                'key' => 'field_sponsors_silver',
+                'label' => 'シルバースポンサー',
+                'name' => 'sponsors_silver',
+                'type' => 'gallery',
+                'instructions' => 'シルバースポンサーのロゴ画像を追加してください。<br><strong>画像タイトル</strong>: 企業名、<strong>キャプション</strong>: リンク先URL',
+                'required' => 0,
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'min' => 0,
+                'max' => '',
+            ),
+            // ブロンズスポンサー
+            array(
+                'key' => 'field_sponsors_bronze',
+                'label' => 'ブロンズスポンサー',
+                'name' => 'sponsors_bronze',
+                'type' => 'gallery',
+                'instructions' => 'ブロンズスポンサーのロゴ画像を追加してください。<br><strong>画像タイトル</strong>: 企業名、<strong>キャプション</strong>: リンク先URL',
+                'required' => 0,
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'min' => 0,
+                'max' => '',
+            ),
+            // 一般法人賛助会員
+            array(
+                'key' => 'field_sponsors_general',
+                'label' => '法人賛助会員',
+                'name' => 'sponsors_general',
+                'type' => 'gallery',
+                'instructions' => '一般法人賛助会員のロゴ画像を追加してください。<br><strong>画像タイトル</strong>: 企業名、<strong>キャプション</strong>: リンク先URL',
+                'required' => 0,
+                'return_format' => 'array',
+                'preview_size' => 'thumbnail',
+                'library' => 'all',
+                'min' => 0,
+                'max' => '',
+            ),
+            // CTA設定
+            array(
+                'key' => 'field_sponsors_cta_text',
+                'label' => 'CTA テキスト',
+                'name' => 'sponsors_cta_text',
+                'type' => 'textarea',
+                'instructions' => '賛助会員募集の説明文（HTMLタグ使用可）',
+                'required' => 0,
+                'rows' => 3,
+            ),
+            array(
+                'key' => 'field_sponsors_cta_button',
+                'label' => 'CTA ボタンテキスト',
+                'name' => 'sponsors_cta_button',
+                'type' => 'text',
+                'instructions' => 'ボタンに表示するテキスト（デフォルト: 賛助会員のご案内）',
+                'required' => 0,
+                'placeholder' => '賛助会員のご案内',
+            ),
+            array(
+                'key' => 'field_sponsors_cta_url',
+                'label' => 'CTA リンク先URL',
+                'name' => 'sponsors_cta_url',
+                'type' => 'url',
+                'instructions' => 'ボタンのリンク先URL',
+                'required' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'templates/template-sponsors.php',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'active' => true,
+    ) );
 }
 
 /**

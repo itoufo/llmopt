@@ -242,7 +242,7 @@ if ( apply_filters( 'lightning_default_slide_display', true ) ) {
                         $pyramid_image = get_field( 'pyramid_image' );
                         if ( ! $pyramid_image ) {
                             // メディアライブラリから画像を検索
-                            $pyramid_image = 'https://haiia.org/wp-content/uploads/2025/10/生成AIを活用するための思考力～考えるってなに？～-1.png';
+                            $pyramid_image = 'https://haiia.org/wp-content/uploads/2025/12/新人類育成計画-1.png';
                         }
                         ?>
                         <figure class="haiia-pyramid-image">

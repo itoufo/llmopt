@@ -175,7 +175,7 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 							}
 						?>
 							<li>
-								<?php if ( filter_var( $url, FILTER_VALIDATE_URL ) ) : ?>
+								<?php if ( preg_match( '#^https?://#i', $url ) ) : ?>
 									<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer">
 										<?php echo esc_html( $title ?: $url ); ?>
 									</a>
@@ -236,7 +236,8 @@ do_action( 'lightning_site_body_before', 'lightning_site_body_before' );
 								$file_url = trim( $line );
 							}
 
-							if ( ! filter_var( $file_url, FILTER_VALIDATE_URL ) ) continue;
+							// URLの簡易チェック（日本語ファイル名対応）
+							if ( ! preg_match( '#^https?://#i', $file_url ) ) continue;
 
 							$file_type = wp_check_filetype( $file_url );
 							$file_ext = strtoupper( $file_type['ext'] );

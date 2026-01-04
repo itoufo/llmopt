@@ -1,0 +1,595 @@
+/**
+ * HAIIA 教育・研修プログラム ページ専用スタイル
+ * about.css / activities.css のデザインシステムを継承
+ */
+
+/* ==========================================================================
+   Variables (共通)
+   ========================================================================== */
+:root {
+    --haiia-primary: #335e4a;
+    --haiia-primary-dark: #1a3d2e;
+    --haiia-primary-light: #abcaaa;
+    --haiia-accent: #0066cc;
+    --haiia-accent-dark: #004499;
+    --haiia-warning: #c0392b;
+    --haiia-warning-bg: #fef2f2;
+    --haiia-success: #27ae60;
+    --haiia-success-bg: #f0fdf4;
+    --haiia-text: #1a1a1a;
+    --haiia-text-muted: #555555;
+    --haiia-bg-light: #f7f9fc;
+    --haiia-bg-dark: #0f172a;
+    --haiia-border: #e2e8f0;
+    --haiia-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --haiia-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --haiia-shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+    --haiia-radius: 8px;
+    --haiia-radius-lg: 16px;
+    --haiia-radius-xl: 24px;
+}
+
+/* ==========================================================================
+   Page Header
+   ========================================================================== */
+.haiia-programs .haiia-page-header {
+    background: linear-gradient(135deg, var(--haiia-primary-dark) 0%, var(--haiia-primary) 100%);
+    padding: 4rem 0;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-programs .haiia-page-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.haiia-programs .haiia-page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.haiia-programs .haiia-page-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   Base Content Styles
+   ========================================================================== */
+.haiia-programs-content {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--haiia-text);
+    padding: 3rem 0;
+}
+
+.haiia-programs-content p {
+    margin-bottom: 1.25em;
+    color: var(--haiia-text-muted);
+}
+
+.haiia-programs-content strong {
+    color: var(--haiia-text);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Section Styles
+   ========================================================================== */
+.haiia-programs-section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--haiia-border);
+}
+
+.haiia-programs-section:last-child {
+    border-bottom: none;
+}
+
+/* 導入セクション */
+.haiia-programs-intro {
+    text-align: center;
+    padding-bottom: 3rem;
+}
+
+.haiia-programs-h2 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    margin-bottom: 1.5rem;
+}
+
+.haiia-programs-lead {
+    font-size: 1.15rem;
+    line-height: 2;
+    color: var(--haiia-text-muted);
+}
+
+/* ==========================================================================
+   H3 Section Title with Icon
+   ========================================================================== */
+.haiia-programs-h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.haiia-programs-h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
+    border-radius: 2px;
+}
+
+.haiia-programs-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   Description
+   ========================================================================== */
+.haiia-programs-desc {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--haiia-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   List Styles
+   ========================================================================== */
+.haiia-programs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: var(--haiia-bg-light);
+    border-radius: var(--haiia-radius-lg);
+    padding: 1.5rem 2rem;
+}
+
+.haiia-programs-list li {
+    padding: 0.85rem 0 0.85rem 2rem;
+    position: relative;
+    color: var(--haiia-text);
+    font-size: 1rem;
+    line-height: 1.7;
+    border-bottom: 1px dashed var(--haiia-border);
+}
+
+.haiia-programs-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.haiia-programs-list li:first-child {
+    padding-top: 0;
+}
+
+.haiia-programs-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.1rem;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, var(--haiia-primary), var(--haiia-accent));
+    border-radius: 50%;
+}
+
+.haiia-programs-list li:first-child::before {
+    top: 0.25rem;
+}
+
+.haiia-programs-note {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--haiia-text-muted);
+    margin-top: 0.35rem;
+    padding-left: 0.5rem;
+}
+
+/* Compact List for Units */
+.haiia-programs-list-compact {
+    background: transparent;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.haiia-programs-list-compact li {
+    padding: 0.6rem 0 0.6rem 1.75rem;
+    border-bottom: none;
+}
+
+.haiia-programs-list-compact li::before {
+    top: 0.85rem;
+    width: 8px;
+    height: 8px;
+}
+
+.haiia-programs-list-compact li:first-child::before {
+    top: 0.85rem;
+}
+
+/* ==========================================================================
+   Unit Cards (カリキュラム)
+   ========================================================================== */
+.haiia-programs-unit {
+    background: #fff;
+    padding: 2rem;
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.haiia-programs-unit:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--haiia-shadow-lg);
+}
+
+.haiia-programs-unit::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
+}
+
+.haiia-programs-unit:last-child {
+    margin-bottom: 0;
+}
+
+.haiia-programs-h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--haiia-text);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.haiia-programs-unit-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: linear-gradient(135deg, var(--haiia-primary), var(--haiia-accent));
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.haiia-programs-target {
+    display: inline-block;
+    background: var(--haiia-bg-light);
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--haiia-primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+/* P-A-I-C Unit */
+.haiia-programs-unit-paic {
+    background: linear-gradient(135deg, var(--haiia-bg-light) 0%, #eef2ff 100%);
+}
+
+.haiia-programs-paic-desc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.haiia-programs-paic-desc strong {
+    display: inline-block;
+    background: var(--haiia-bg-dark);
+    color: #fff;
+    padding: 0.35rem 1rem;
+    border-radius: var(--haiia-radius);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Table Styles
+   ========================================================================== */
+.haiia-programs-table-wrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow);
+}
+
+.haiia-programs-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: var(--haiia-radius-lg);
+    overflow: hidden;
+}
+
+.haiia-programs-table thead {
+    background: var(--haiia-bg-dark);
+    color: #fff;
+}
+
+.haiia-programs-table th {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+}
+
+.haiia-programs-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--haiia-border);
+    font-size: 0.95rem;
+    color: var(--haiia-text);
+}
+
+.haiia-programs-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.haiia-programs-table tbody tr:hover {
+    background: var(--haiia-bg-light);
+}
+
+/* Level Badge */
+.haiia-programs-level {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    padding: 0.35rem 0.75rem;
+    background: linear-gradient(135deg, var(--haiia-primary), var(--haiia-accent));
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 50px;
+}
+
+/* Season Badge */
+.haiia-programs-season {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.haiia-programs-spring {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.haiia-programs-summer {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.haiia-programs-autumn {
+    background: #fed7aa;
+    color: #c2410c;
+}
+
+.haiia-programs-winter {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+/* ==========================================================================
+   Quote Section
+   ========================================================================== */
+.haiia-programs-quote-section {
+    border-bottom: none;
+    padding-top: 3rem;
+}
+
+.haiia-programs-quote {
+    background: linear-gradient(135deg, var(--haiia-bg-dark) 0%, #1e293b 100%);
+    color: #fff;
+    padding: 3rem;
+    border-radius: var(--haiia-radius-xl);
+    margin: 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-programs-quote::before {
+    content: "\201C";
+    position: absolute;
+    top: 0.5rem;
+    left: 1.5rem;
+    font-size: 6rem;
+    font-family: Georgia, serif;
+    opacity: 0.1;
+    line-height: 1;
+}
+
+.haiia-programs-quote p {
+    font-size: 1.2rem;
+    line-height: 2;
+    margin: 0;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-programs-quote strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Responsive - レスポンシブ
+   ========================================================================== */
+@media (max-width: 768px) {
+    .haiia-programs .haiia-page-header {
+        padding: 3rem 0;
+    }
+
+    .haiia-programs .haiia-page-title {
+        font-size: 1.85rem;
+    }
+
+    .haiia-programs-content {
+        padding: 2rem 0;
+    }
+
+    .haiia-programs-section {
+        padding: 2rem 0;
+    }
+
+    .haiia-programs-h2 {
+        font-size: 1.5rem;
+    }
+
+    .haiia-programs-h3 {
+        font-size: 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .haiia-programs-icon {
+        font-size: 1.5rem;
+    }
+
+    .haiia-programs-lead {
+        font-size: 1rem;
+    }
+
+    .haiia-programs-lead br {
+        display: none;
+    }
+
+    .haiia-programs-list {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .haiia-programs-list li {
+        padding: 0.75rem 0 0.75rem 1.75rem;
+    }
+
+    .haiia-programs-unit {
+        padding: 1.5rem;
+    }
+
+    .haiia-programs-h4 {
+        font-size: 1.1rem;
+        flex-wrap: wrap;
+    }
+
+    .haiia-programs-table th,
+    .haiia-programs-table td {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .haiia-programs-quote {
+        padding: 2rem 1.5rem;
+    }
+
+    .haiia-programs-quote p {
+        font-size: 1.05rem;
+        line-height: 1.9;
+    }
+
+    .haiia-programs-quote::before {
+        font-size: 4rem;
+        top: 0;
+        left: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .haiia-programs .haiia-page-title {
+        font-size: 1.5rem;
+    }
+
+    .haiia-programs-h3 {
+        font-size: 1.15rem;
+    }
+
+    .haiia-programs-note {
+        padding-left: 0;
+    }
+
+    .haiia-programs-table th,
+    .haiia-programs-table td {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .haiia-programs-level,
+    .haiia-programs-season {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+@media print {
+    .haiia-programs .haiia-page-header,
+    .haiia-programs-quote {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+    }
+
+    .haiia-programs-quote p,
+    .haiia-programs-quote strong {
+        color: #000 !important;
+    }
+
+    .haiia-programs-unit::before,
+    .haiia-programs-list li::before,
+    .haiia-programs-unit-num,
+    .haiia-programs-level {
+        background: #ccc !important;
+    }
+
+    .haiia-programs-table thead {
+        background: #ddd !important;
+        color: #000 !important;
+    }
+}

@@ -1,0 +1,433 @@
+/**
+ * HAIIA 協会活動 ページ専用スタイル
+ * about.css のデザインシステムを継承
+ */
+
+/* ==========================================================================
+   Variables (共通)
+   ========================================================================== */
+:root {
+    --haiia-primary: #335e4a;
+    --haiia-primary-dark: #1a3d2e;
+    --haiia-primary-light: #abcaaa;
+    --haiia-accent: #0066cc;
+    --haiia-accent-dark: #004499;
+    --haiia-warning: #c0392b;
+    --haiia-warning-bg: #fef2f2;
+    --haiia-success: #27ae60;
+    --haiia-success-bg: #f0fdf4;
+    --haiia-text: #1a1a1a;
+    --haiia-text-muted: #555555;
+    --haiia-bg-light: #f7f9fc;
+    --haiia-bg-dark: #0f172a;
+    --haiia-border: #e2e8f0;
+    --haiia-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --haiia-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --haiia-shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+    --haiia-radius: 8px;
+    --haiia-radius-lg: 16px;
+    --haiia-radius-xl: 24px;
+}
+
+/* ==========================================================================
+   Page Header (about.css から継承)
+   ========================================================================== */
+.haiia-activities .haiia-page-header {
+    background: linear-gradient(135deg, var(--haiia-primary-dark) 0%, var(--haiia-primary) 100%);
+    padding: 4rem 0;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-activities .haiia-page-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.haiia-activities .haiia-page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.haiia-activities .haiia-page-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   Base Content Styles
+   ========================================================================== */
+.haiia-activities-content {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--haiia-text);
+    padding: 3rem 0;
+}
+
+.haiia-activities-content p {
+    margin-bottom: 1.25em;
+    color: var(--haiia-text-muted);
+}
+
+.haiia-activities-content strong {
+    color: var(--haiia-text);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Section Styles
+   ========================================================================== */
+.haiia-activities-section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--haiia-border);
+}
+
+.haiia-activities-section:last-child {
+    border-bottom: none;
+}
+
+/* 導入セクション */
+.haiia-activities-intro {
+    text-align: center;
+    padding-bottom: 3rem;
+}
+
+.haiia-activities-h2 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    margin-bottom: 1.5rem;
+}
+
+.haiia-activities-lead {
+    font-size: 1.15rem;
+    line-height: 2;
+    color: var(--haiia-text-muted);
+}
+
+/* ==========================================================================
+   H3 Section Title with Icon
+   ========================================================================== */
+.haiia-activities-h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--haiia-text);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.haiia-activities-h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
+    border-radius: 2px;
+}
+
+.haiia-activities-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   Description
+   ========================================================================== */
+.haiia-activities-desc {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--haiia-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   MVV Grid (ミッション・ビジョン・バリュー)
+   ========================================================================== */
+.haiia-activities-mvv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.haiia-activities-mvv-item {
+    background: #fff;
+    padding: 2rem;
+    border-radius: var(--haiia-radius-lg);
+    box-shadow: var(--haiia-shadow);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.haiia-activities-mvv-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--haiia-shadow-lg);
+}
+
+.haiia-activities-mvv-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-accent));
+}
+
+.haiia-activities-mvv-label {
+    display: inline-block;
+    background: var(--haiia-bg-dark);
+    color: #fff;
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin-bottom: 1rem;
+}
+
+.haiia-activities-mvv-item p {
+    font-size: 1.05rem;
+    margin: 0;
+    color: var(--haiia-text);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   List Styles
+   ========================================================================== */
+.haiia-activities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: var(--haiia-bg-light);
+    border-radius: var(--haiia-radius-lg);
+    padding: 1.5rem 2rem;
+}
+
+.haiia-activities-list li {
+    padding: 0.85rem 0 0.85rem 2rem;
+    position: relative;
+    color: var(--haiia-text);
+    font-size: 1rem;
+    line-height: 1.7;
+    border-bottom: 1px dashed var(--haiia-border);
+}
+
+.haiia-activities-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.haiia-activities-list li:first-child {
+    padding-top: 0;
+}
+
+.haiia-activities-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.1rem;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, var(--haiia-primary), var(--haiia-accent));
+    border-radius: 50%;
+}
+
+.haiia-activities-list li:first-child::before {
+    top: 0.25rem;
+}
+
+.haiia-activities-note {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--haiia-text-muted);
+    margin-top: 0.35rem;
+    padding-left: 0.5rem;
+}
+
+/* Future List */
+.haiia-activities-future-list {
+    background: linear-gradient(135deg, var(--haiia-bg-light) 0%, #eef2ff 100%);
+}
+
+/* ==========================================================================
+   Quote Section
+   ========================================================================== */
+.haiia-activities-quote-section {
+    border-bottom: none;
+    padding-top: 3rem;
+}
+
+.haiia-activities-quote {
+    background: linear-gradient(135deg, var(--haiia-bg-dark) 0%, #1e293b 100%);
+    color: #fff;
+    padding: 3rem;
+    border-radius: var(--haiia-radius-xl);
+    margin: 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-activities-quote::before {
+    content: "\201C";
+    position: absolute;
+    top: 0.5rem;
+    left: 1.5rem;
+    font-size: 6rem;
+    font-family: Georgia, serif;
+    opacity: 0.1;
+    line-height: 1;
+}
+
+.haiia-activities-quote p {
+    font-size: 1.2rem;
+    line-height: 2;
+    margin: 0;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-activities-quote strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Responsive - レスポンシブ
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .haiia-activities-mvv-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .haiia-activities .haiia-page-header {
+        padding: 3rem 0;
+    }
+
+    .haiia-activities .haiia-page-title {
+        font-size: 1.85rem;
+    }
+
+    .haiia-activities-content {
+        padding: 2rem 0;
+    }
+
+    .haiia-activities-section {
+        padding: 2rem 0;
+    }
+
+    .haiia-activities-h2 {
+        font-size: 1.5rem;
+    }
+
+    .haiia-activities-h3 {
+        font-size: 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .haiia-activities-icon {
+        font-size: 1.5rem;
+    }
+
+    .haiia-activities-lead {
+        font-size: 1rem;
+    }
+
+    .haiia-activities-lead br {
+        display: none;
+    }
+
+    .haiia-activities-desc br {
+        display: none;
+    }
+
+    .haiia-activities-mvv-item {
+        padding: 1.5rem;
+    }
+
+    .haiia-activities-list {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .haiia-activities-list li {
+        padding: 0.75rem 0 0.75rem 1.75rem;
+    }
+
+    .haiia-activities-quote {
+        padding: 2rem 1.5rem;
+    }
+
+    .haiia-activities-quote p {
+        font-size: 1.05rem;
+        line-height: 1.9;
+    }
+
+    .haiia-activities-quote::before {
+        font-size: 4rem;
+        top: 0;
+        left: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .haiia-activities .haiia-page-title {
+        font-size: 1.5rem;
+    }
+
+    .haiia-activities-h3 {
+        font-size: 1.15rem;
+    }
+
+    .haiia-activities-note {
+        padding-left: 0;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+@media print {
+    .haiia-activities .haiia-page-header,
+    .haiia-activities-quote {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+    }
+
+    .haiia-activities-quote p,
+    .haiia-activities-quote strong {
+        color: #000 !important;
+    }
+
+    .haiia-activities-mvv-item::before,
+    .haiia-activities-list li::before {
+        background: #ccc !important;
+    }
+}
