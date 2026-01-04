@@ -30,6 +30,15 @@
 }
 
 /* ==========================================================================
+   Site Body Override - 上部余白削除
+   ========================================================================== */
+@media (min-width: 1200px) {
+    .site-body {
+        padding-top: 0;
+    }
+}
+
+/* ==========================================================================
    Page Header - インパクトのあるヘッダー
    ========================================================================== */
 .haiia-page-header {
@@ -163,7 +172,7 @@
 
 /* Mission - 深いグリーン背景 */
 .haiia-mission {
-    background: linear-gradient(145deg, var(--haiia-primary-dark) 0%, var(--haiia-primary) 100%);
+    background: var(--haiia-primary-dark);
     color: #fff;
     box-shadow: var(--haiia-shadow-colored);
 }
@@ -171,11 +180,12 @@
 .haiia-mission::before {
     content: "";
     position: absolute;
-    top: -50%;
-    right: -30%;
-    width: 100%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, transparent 0%, rgba(0, 0, 0, 0.15) 100%);
+    pointer-events: none;
 }
 
 .haiia-mission .haiia-mvv-label {
@@ -183,7 +193,7 @@
     color: #fff;
 }
 
-.haiia-mission h3 {
+.haiia-mvv-item.haiia-mission h3 {
     color: #fff;
 }
 

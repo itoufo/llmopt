@@ -18,24 +18,24 @@ if ( apply_filters( 'lightning_is_site_header', true, 'site_header' ) ) {
 do_action( 'lightning_site_header_after', 'lightning_site_header_after' );
 ?>
 
+<!-- ページヘッダー -->
+<div class="haiia-page-header">
+    <div class="container">
+        <h1 class="haiia-page-title"><?php the_title(); ?></h1>
+        <?php
+        $subtitle = get_field( 'sponsors_subtitle' );
+        if ( $subtitle ) : ?>
+            <p class="haiia-page-subtitle"><?php echo esc_html( $subtitle ); ?></p>
+        <?php else : ?>
+            <p class="haiia-page-subtitle">Corporate Sponsors</p>
+        <?php endif; ?>
+    </div>
+</div>
+
 <?php do_action( 'lightning_site_body_before', 'lightning_site_body_before' ); ?>
 
 <div class="<?php lightning_the_class_name( 'site-body' ); ?> haiia-sponsors">
     <?php do_action( 'lightning_site_body_prepend', 'lightning_site_body_prepend' ); ?>
-
-    <!-- ページヘッダー -->
-    <div class="haiia-page-header">
-        <div class="container">
-            <h1 class="haiia-page-title"><?php the_title(); ?></h1>
-            <?php
-            $subtitle = get_field( 'sponsors_subtitle' );
-            if ( $subtitle ) : ?>
-                <p class="haiia-page-subtitle"><?php echo esc_html( $subtitle ); ?></p>
-            <?php else : ?>
-                <p class="haiia-page-subtitle">Corporate Sponsors</p>
-            <?php endif; ?>
-        </div>
-    </div>
 
     <div class="<?php lightning_the_class_name( 'site-body-container' ); ?> container">
 
