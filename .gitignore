@@ -4,6 +4,13 @@
 # But track themes
 !.gitignore
 !haiia.org/
+
+# Track config directory (memory init, etc.)
+!config/
+!config/**
+
+# Track CLAUDE.md (project instructions)
+!CLAUDE.md
 !haiia.org/wp-content/
 !haiia.org/wp-content/themes/
 !haiia.org/wp-content/themes/**
