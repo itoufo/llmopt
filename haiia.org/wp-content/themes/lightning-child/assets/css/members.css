@@ -1,0 +1,362 @@
+/**
+ * HAIIA 会員限定ページ専用スタイル
+ * activities.css デザインシステム準拠
+ */
+
+/* ==========================================================================
+   Variables (継承)
+   ========================================================================== */
+:root {
+    --haiia-primary: #335e4a;
+    --haiia-primary-dark: #1a3d2e;
+    --haiia-primary-light: #abcaaa;
+    --haiia-accent: #0066cc;
+    --haiia-accent-light: #e8f4fd;
+    --haiia-text: #1a1a1a;
+    --haiia-text-muted: #4a5568;
+    --haiia-bg-light: #f8fafc;
+    --haiia-bg-dark: #0f172a;
+    --haiia-border: #e2e8f0;
+    --haiia-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --haiia-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    --haiia-shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.12);
+    --haiia-radius: 12px;
+    --haiia-radius-lg: 20px;
+}
+
+/* ==========================================================================
+   Site Body Override - 上部余白削除
+   ========================================================================== */
+@media (min-width: 1200px) {
+    .haiia-members .site-body {
+        padding-top: 0;
+    }
+}
+
+/* ==========================================================================
+   会員限定ページ基本スタイル
+   ========================================================================== */
+.haiia-members-page {
+    padding: 3rem 0 4rem;
+}
+
+/* ==========================================================================
+   HAIIA School カード
+   ========================================================================== */
+.haiia-members-school-card {
+    background: linear-gradient(135deg, var(--haiia-primary-dark) 0%, var(--haiia-primary) 100%);
+    border-radius: var(--haiia-radius-lg);
+    padding: 3rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--haiia-shadow-lg);
+}
+
+.haiia-members-school-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.haiia-school-content {
+    position: relative;
+    z-index: 1;
+}
+
+.haiia-school-content h4 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 1rem;
+    color: #fff;
+}
+
+.haiia-school-content > p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+}
+
+.haiia-school-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+}
+
+.haiia-school-features li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.haiia-school-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--haiia-primary-light);
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   会員限定レポートセクション
+   ========================================================================== */
+.haiia-members-reports {
+    margin-top: 1.5rem;
+}
+
+.haiia-report-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ==========================================================================
+   非会員向けメッセージ
+   ========================================================================== */
+.haiia-members-guest {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--haiia-bg-light);
+    border-radius: var(--haiia-radius-lg);
+    border: 1px solid var(--haiia-border);
+}
+
+.haiia-members-lock-icon {
+    color: var(--haiia-primary);
+    margin-bottom: 1.5rem;
+}
+
+.haiia-members-lock-icon svg {
+    width: 64px;
+    height: 64px;
+}
+
+.haiia-members-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--haiia-text);
+    margin: 0 0 1rem;
+}
+
+.haiia-members-desc {
+    font-size: 1.1rem;
+    color: var(--haiia-text-muted);
+    line-height: 1.9;
+    margin-bottom: 2rem;
+}
+
+.haiia-members-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   ボタン（activities.css準拠）
+   ========================================================================== */
+.haiia-btn-primary-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--haiia-primary), var(--haiia-primary-dark));
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(51, 94, 74, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.haiia-btn-primary-large:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(51, 94, 74, 0.4);
+    color: #fff !important;
+}
+
+.haiia-btn-outline-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: var(--haiia-primary) !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    border: 2px solid var(--haiia-primary);
+    cursor: pointer;
+}
+
+.haiia-btn-outline-large:hover {
+    background: var(--haiia-primary);
+    color: #fff !important;
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   CTA Quote（activities.css準拠）
+   ========================================================================== */
+.haiia-cta-quote {
+    background: linear-gradient(145deg, var(--haiia-bg-dark) 0%, #1e293b 100%);
+    padding: 3rem;
+    border-radius: var(--haiia-radius-lg);
+    text-align: center;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.haiia-cta-quote::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--haiia-primary), var(--haiia-primary-light));
+}
+
+.haiia-cta-quote h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 1rem;
+}
+
+.haiia-cta-quote p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.haiia-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.haiia-cta-quote .haiia-btn-primary-large {
+    background: linear-gradient(135deg, #fff, #f8fafc);
+    color: var(--haiia-bg-dark) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.haiia-cta-quote .haiia-btn-primary-large:hover {
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    color: var(--haiia-bg-dark) !important;
+}
+
+/* ==========================================================================
+   Target Grid（会員限定イベント用）
+   ========================================================================== */
+.haiia-target-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+    .haiia-members-page {
+        padding: 2rem 0 3rem;
+    }
+
+    .haiia-members-school-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .haiia-school-content h4 {
+        font-size: 1.25rem;
+    }
+
+    .haiia-members-guest {
+        padding: 3rem 1.5rem;
+    }
+
+    .haiia-members-title {
+        font-size: 1.5rem;
+    }
+
+    .haiia-members-desc {
+        font-size: 1rem;
+    }
+
+    .haiia-btn-primary-large,
+    .haiia-btn-outline-large {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+
+    .haiia-cta-quote {
+        padding: 2rem 1.5rem;
+    }
+
+    .haiia-report-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .haiia-members-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .haiia-members-cta a {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .haiia-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .haiia-cta-buttons a {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+@media print {
+    .haiia-members-school-card {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+    }
+
+    .haiia-cta-quote {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+    }
+
+    .haiia-cta-quote h3,
+    .haiia-cta-quote p {
+        color: #000 !important;
+    }
+}

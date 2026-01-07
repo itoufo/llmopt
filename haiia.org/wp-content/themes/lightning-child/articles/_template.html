@@ -1,0 +1,72 @@
+<!--
+HAIIA記事テンプレート
+====================================
+EEAT対応: 経験・専門性・権威性・信頼性
+LLMO対応: FAQ構造化データ・明確な見出し構造
+
+使い方:
+1. このテンプレートをコピーして新規記事を作成
+2. {{TITLE}}, {{CONTENT}} などを置換
+3. upload.sh で WordPress にアップロード
+====================================
+-->
+
+<!-- 記事本文 -->
+<article class="haiia-article-content">
+
+{{CONTENT}}
+
+</article>
+
+<!-- よくある質問（FAQ） - LLMO/リッチスニペット対応 -->
+<section class="haiia-faq-section">
+<h2>よくある質問</h2>
+<div class="haiia-faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+{{FAQ_ITEMS}}
+
+</div>
+</section>
+
+<!-- 実践者の声 - EEAT経験シグナル -->
+<section class="haiia-experience-section">
+<h2>実践者の声</h2>
+<div class="haiia-testimonials">
+
+{{TESTIMONIALS}}
+
+</div>
+</section>
+
+<!-- 関連記事 -->
+<section class="haiia-related-section">
+<h2>関連記事</h2>
+<div class="haiia-related-links">
+
+{{RELATED_ARTICLES}}
+
+</div>
+</section>
+
+<!-- 執筆・監修情報 - EEAT対応 -->
+<aside class="haiia-author-section">
+<div class="haiia-author-header">
+<span class="haiia-author-label">この記事を執筆・監修した人</span>
+<span class="haiia-author-name-badge">伊東雄歩</span>
+</div>
+<div class="haiia-author-card">
+<div class="haiia-author-profile">
+<div class="haiia-author-avatar">伊東</div>
+<div class="haiia-author-info">
+<h4>伊東雄歩<span class="haiia-reading">（いとう ゆうほ）</span></h4>
+<p class="haiia-author-titles">株式会社ウォーカー 代表取締役 ／ 健全AI教育協会（HAIIA）理事</p>
+</div>
+</div>
+<div class="haiia-author-bio">
+<p><strong>専門：</strong>生成AIの非エンジニア・初心者向け活用と教育</p>
+<p><strong>実績：</strong>プログラミング学習支援「Digitech Quest」開発、AI教材「StoQ」企画・制作、JDLA認定ジェネレーティブAI講座講師</p>
+<p><strong>経歴：</strong>横須賀高校 → 東北大学 → ソフトバンク（2013-2015）→ 株式会社ウォーカー設立（2015年〜）</p>
+<p><strong>資格：</strong>MENSA会員、NLPマスタープラクティショナー</p>
+</div>
+</div>
+</aside>

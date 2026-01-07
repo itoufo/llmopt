@@ -269,6 +269,46 @@ function haiia_pmpro_save_company_name_field( $user_id ) {
 }
 
 /**
+ * HAIIA記事カテゴリの投稿に専用テンプレートを適用
+ * カテゴリスラッグ: haiia-article
+ */
+add_filter( 'single_template', 'haiia_article_template' );
+function haiia_article_template( $template ) {
+    if ( is_single() && has_category( 'haiia-article' ) ) {
+        $custom_template = get_stylesheet_directory() . '/single-haiia-article.php';
+        if ( file_exists( $custom_template ) ) {
+            return $custom_template;
+        }
+    }
+    return $template;
+}
+
+/**
+ * 記事一覧ページテンプレート用CSSを読み込み
+ */
+add_action( 'wp_enqueue_scripts', 'haiia_enqueue_article_list_styles' );
+function haiia_enqueue_article_list_styles() {
+    if ( is_page_template( 'templates/template-article-list.php' ) ) {
+        // 記事一覧ページ用スタイルはテンプレート内に埋め込み済み
+    }
+}
+
+/**
+ * HAIIA記事用CSS（著者ボックス等）を読み込み
+ */
+add_action( 'wp_enqueue_scripts', 'haiia_enqueue_article_styles' );
+function haiia_enqueue_article_styles() {
+    if ( is_single() && has_category( 'haiia-article' ) ) {
+        wp_enqueue_style(
+            'haiia-author-box',
+            get_stylesheet_directory_uri() . '/assets/css/author-box.css',
+            array(),
+            filemtime( get_stylesheet_directory() . '/assets/css/author-box.css' )
+        );
+    }
+}
+
+/**
  * 法人賛助会員ページテンプレート用CSSを読み込み
  */
 add_action( 'wp_enqueue_scripts', 'haiia_enqueue_sponsors_styles' );
@@ -281,6 +321,34 @@ function haiia_enqueue_sponsors_styles() {
             filemtime( get_stylesheet_directory() . '/assets/css/sponsors.css' )
         );
     }
+}
+
+/**
+ * サービスページ用CSSを読み込み（セキュリティコンサルティング等）
+ */
+add_action( 'wp_enqueue_scripts', 'haiia_enqueue_service_styles' );
+function haiia_enqueue_service_styles() {
+    // セキュリティコンサルティングページ
+    if ( is_page( 'security-consulting' ) ) {
+        wp_enqueue_style(
+            'haiia-service-style',
+            get_stylesheet_directory_uri() . '/assets/css/service.css',
+            array(),
+            filemtime( get_stylesheet_directory() . '/assets/css/service.css' )
+        );
+    }
+}
+
+/**
+ * サービスページでWordPressの自動整形（wpautop）を無効化
+ */
+add_filter( 'the_content', 'haiia_disable_wpautop_for_services', 0 );
+function haiia_disable_wpautop_for_services( $content ) {
+    if ( is_page( 'security-consulting' ) ) {
+        remove_filter( 'the_content', 'wpautop' );
+        remove_filter( 'the_content', 'wptexturize' );
+    }
+    return $content;
 }
 
 /**
@@ -435,6 +503,162 @@ function haiia_register_sponsors_fields() {
         'instruction_placement' => 'label',
         'active' => true,
     ) );
+}
+
+/**
+ * HAIIA記事用 ACF フィールドグループ
+ */
+add_action( 'acf/init', 'haiia_register_article_fields' );
+function haiia_register_article_fields() {
+    if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+        return;
+    }
+
+    acf_add_local_field_group( array(
+        'key' => 'group_haiia_article',
+        'title' => 'HAIIA記事設定',
+        'fields' => array(
+            // カテゴリラベル
+            array(
+                'key' => 'field_article_category_label',
+                'label' => 'カテゴリラベル',
+                'name' => 'article_category_label',
+                'type' => 'select',
+                'instructions' => '記事のカテゴリを選択してください',
+                'required' => 0,
+                'choices' => array(
+                    '4つの力' => '4つの力',
+                    '理念思想' => '理念・思想',
+                    '実践ガイド' => '実践ガイド',
+                    '対象別' => '対象別',
+                    '倫理' => '倫理',
+                    'AI教育' => 'AI教育（その他）',
+                ),
+                'default_value' => 'AI教育',
+            ),
+            // 読了時間
+            array(
+                'key' => 'field_article_read_time',
+                'label' => '読了時間',
+                'name' => 'article_read_time',
+                'type' => 'text',
+                'instructions' => '読了時間を入力（例：8分）',
+                'required' => 0,
+                'placeholder' => '5分',
+            ),
+            // 抜粋
+            array(
+                'key' => 'field_article_excerpt',
+                'label' => '記事の概要',
+                'name' => 'article_excerpt',
+                'type' => 'textarea',
+                'instructions' => '記事の概要（150〜200文字程度）',
+                'required' => 0,
+                'rows' => 3,
+            ),
+            // 特集記事フラグ
+            array(
+                'key' => 'field_article_featured',
+                'label' => '特集記事として表示',
+                'name' => 'article_featured',
+                'type' => 'true_false',
+                'instructions' => '記事一覧ページの特集エリアに大きく表示します',
+                'required' => 0,
+                'default_value' => 0,
+                'ui' => 1,
+            ),
+            // まとめ
+            array(
+                'key' => 'field_article_summary',
+                'label' => 'まとめ',
+                'name' => 'article_summary',
+                'type' => 'wysiwyg',
+                'instructions' => '記事のまとめ・要点（箇条書き推奨）',
+                'required' => 0,
+                'tabs' => 'all',
+                'toolbar' => 'basic',
+                'media_upload' => 0,
+            ),
+            // FAQ
+            array(
+                'key' => 'field_article_faq',
+                'label' => 'よくある質問（FAQ）',
+                'name' => 'article_faq',
+                'type' => 'repeater',
+                'instructions' => 'よくある質問と回答を追加（LLMO対策）',
+                'required' => 0,
+                'min' => 0,
+                'max' => 10,
+                'layout' => 'block',
+                'button_label' => '質問を追加',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_faq_question',
+                        'label' => '質問',
+                        'name' => 'question',
+                        'type' => 'text',
+                        'required' => 1,
+                    ),
+                    array(
+                        'key' => 'field_faq_answer',
+                        'label' => '回答',
+                        'name' => 'answer',
+                        'type' => 'textarea',
+                        'required' => 1,
+                        'rows' => 3,
+                    ),
+                ),
+            ),
+            // キーワード
+            array(
+                'key' => 'field_article_keywords',
+                'label' => 'キーワード',
+                'name' => 'article_keywords',
+                'type' => 'text',
+                'instructions' => 'SEO用キーワード（カンマ区切り）',
+                'required' => 0,
+                'placeholder' => 'AI教育, インクルーシブ, 4つの力',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_category',
+                    'operator' => '==',
+                    'value' => 'category:haiia-article',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'active' => true,
+    ) );
+}
+
+/**
+ * 会員限定ページテンプレート用CSSを読み込み
+ */
+add_action( 'wp_enqueue_scripts', 'haiia_enqueue_members_styles' );
+function haiia_enqueue_members_styles() {
+    if ( is_page_template( 'templates/template-members.php' ) ) {
+        // activities.css（共通スタイル）を先に読み込み
+        wp_enqueue_style(
+            'haiia-activities-style',
+            get_stylesheet_directory_uri() . '/assets/css/activities.css',
+            array(),
+            filemtime( get_stylesheet_directory() . '/assets/css/activities.css' )
+        );
+        // members.css（会員ページ固有スタイル）
+        wp_enqueue_style(
+            'haiia-members-style',
+            get_stylesheet_directory_uri() . '/assets/css/members.css',
+            array( 'haiia-activities-style' ),
+            filemtime( get_stylesheet_directory() . '/assets/css/members.css' )
+        );
+    }
 }
 
 /**

@@ -36,18 +36,27 @@
 }
 
 /* ==========================================================================
+   Site Body Override - 上部余白削除
+   ========================================================================== */
+@media (min-width: 1200px) {
+    .site-body {
+        padding-top: 0;
+    }
+}
+
+/* ==========================================================================
    Page Header
    ========================================================================== */
-.haiia-sponsors .haiia-page-header {
-    background: linear-gradient(135deg, var(--haiia-bg-dark) 0%, var(--haiia-primary-dark) 50%, var(--haiia-primary) 100%);
-    padding: 5rem 0;
+.haiia-page-header {
+    background: linear-gradient(135deg, var(--haiia-primary-dark) 0%, var(--haiia-primary) 100%);
+    padding: 4rem 0;
     text-align: center;
     color: #fff;
     position: relative;
     overflow: hidden;
 }
 
-.haiia-sponsors .haiia-page-header::before {
+.haiia-page-header::before {
     content: "";
     position: absolute;
     top: 0;
@@ -60,7 +69,7 @@
     pointer-events: none;
 }
 
-.haiia-sponsors .haiia-page-title {
+.haiia-page-header .haiia-page-title {
     font-size: 3rem;
     font-weight: 900;
     margin: 0 0 0.75rem;
@@ -70,7 +79,7 @@
     text-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
 
-.haiia-sponsors .haiia-page-subtitle {
+.haiia-page-header .haiia-page-subtitle {
     font-size: 1.2rem;
     opacity: 0.9;
     margin: 0;
@@ -416,11 +425,11 @@
 }
 
 @media (max-width: 768px) {
-    .haiia-sponsors .haiia-page-header {
+    .haiia-page-header {
         padding: 4rem 0;
     }
 
-    .haiia-sponsors .haiia-page-title {
+    .haiia-page-header .haiia-page-title {
         font-size: 2.25rem;
     }
 
@@ -480,11 +489,11 @@
 }
 
 @media (max-width: 480px) {
-    .haiia-sponsors .haiia-page-title {
+    .haiia-page-header .haiia-page-title {
         font-size: 1.85rem;
     }
 
-    .haiia-sponsors .haiia-page-subtitle {
+    .haiia-page-header .haiia-page-subtitle {
         font-size: 1rem;
     }
 
@@ -512,7 +521,7 @@
    Print Styles
    ========================================================================== */
 @media print {
-    .haiia-sponsors .haiia-page-header {
+    .haiia-page-header {
         background: #f0f0f0 !important;
         color: #000 !important;
     }

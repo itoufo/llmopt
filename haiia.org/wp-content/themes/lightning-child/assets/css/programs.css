@@ -30,9 +30,18 @@
 }
 
 /* ==========================================================================
+   Site Body Override - 上部余白削除
+   ========================================================================== */
+@media (min-width: 1200px) {
+    .site-body {
+        padding-top: 0;
+    }
+}
+
+/* ==========================================================================
    Page Header
    ========================================================================== */
-.haiia-programs .haiia-page-header {
+.haiia-page-header {
     background: linear-gradient(135deg, var(--haiia-primary-dark) 0%, var(--haiia-primary) 100%);
     padding: 4rem 0;
     text-align: center;
@@ -41,7 +50,7 @@
     overflow: hidden;
 }
 
-.haiia-programs .haiia-page-header::before {
+.haiia-page-header::before {
     content: "";
     position: absolute;
     top: -50%;
@@ -52,14 +61,14 @@
     pointer-events: none;
 }
 
-.haiia-programs .haiia-page-title {
+.haiia-page-header .haiia-page-title {
     font-size: 2.5rem;
     font-weight: 800;
     margin: 0 0 0.5rem;
     letter-spacing: 0.05em;
 }
 
-.haiia-programs .haiia-page-subtitle {
+.haiia-page-header .haiia-page-subtitle {
     font-size: 1.1rem;
     opacity: 0.85;
     margin: 0;
@@ -462,11 +471,11 @@
    Responsive - レスポンシブ
    ========================================================================== */
 @media (max-width: 768px) {
-    .haiia-programs .haiia-page-header {
+    .haiia-page-header {
         padding: 3rem 0;
     }
 
-    .haiia-programs .haiia-page-title {
+    .haiia-page-header .haiia-page-title {
         font-size: 1.85rem;
     }
 
@@ -541,7 +550,7 @@
 }
 
 @media (max-width: 480px) {
-    .haiia-programs .haiia-page-title {
+    .haiia-page-header .haiia-page-title {
         font-size: 1.5rem;
     }
 
@@ -570,7 +579,7 @@
    Print Styles
    ========================================================================== */
 @media print {
-    .haiia-programs .haiia-page-header,
+    .haiia-page-header,
     .haiia-programs-quote {
         background: #f0f0f0 !important;
         color: #000 !important;

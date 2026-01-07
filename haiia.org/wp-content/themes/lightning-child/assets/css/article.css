@@ -1,0 +1,690 @@
+/**
+ * HAIIA Article Template Styles
+ * LLMO最適化記事テンプレート用CSS
+ */
+
+/* ==========================================================================
+   Article Header
+   ========================================================================== */
+
+.haiia-article-header {
+    background: linear-gradient(135deg, #1a3d2e 0%, #335e4a 100%);
+    padding: 4rem 0 3rem;
+    color: #fff;
+}
+
+.haiia-article-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.haiia-article-category {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.375rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.haiia-article-read-time {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.haiia-article-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+}
+
+.haiia-article-excerpt {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    opacity: 0.95;
+    max-width: 720px;
+    margin-bottom: 1.5rem;
+}
+
+.haiia-article-meta-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.haiia-article-dates {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.haiia-article-dates span {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.haiia-article-dates svg {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   Article Body
+   ========================================================================== */
+
+.haiia-article {
+    background: #f8fafc;
+}
+
+.haiia-article-entry {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+/* ==========================================================================
+   Author Box (EEAT)
+   ========================================================================== */
+
+.haiia-article-author-box {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.haiia-article-author-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-left: 4px solid #335e4a;
+}
+
+.haiia-author-avatar img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.haiia-author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.haiia-author-label {
+    font-size: 0.75rem;
+    color: #fff;
+}
+
+.haiia-author-name {
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.haiia-author-title {
+    font-size: 0.875rem;
+    color: #475569;
+}
+
+.haiia-author-credentials {
+    font-size: 0.75rem;
+    color: #335e4a;
+}
+
+/* Author Box Bottom (Detailed) */
+.haiia-article-author-bottom {
+    margin-top: 3rem;
+    border: none;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.haiia-article-author-bottom h3 {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0 0 1rem;
+    font-weight: 600;
+}
+
+.haiia-author-detail {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.haiia-author-avatar-large img {
+    border-radius: 0.75rem;
+    object-fit: contain;
+}
+
+.haiia-author-bio h4 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    color: #1e293b;
+}
+
+.haiia-author-bio p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 1rem;
+}
+
+.haiia-author-credentials-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.haiia-author-credentials-list span {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.haiia-author-link {
+    color: #335e4a;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+}
+
+.haiia-author-link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Table of Contents
+   ========================================================================== */
+
+.haiia-article-toc {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.haiia-toc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.haiia-toc-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.haiia-toc-content li {
+    margin: 0;
+}
+
+.haiia-toc-content li a {
+    display: block;
+    padding: 0.5rem 0;
+    color: #475569;
+    text-decoration: none;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.2s;
+}
+
+.haiia-toc-content li a:hover {
+    color: #335e4a;
+    padding-left: 0.5rem;
+}
+
+.haiia-toc-content .toc-h3 a {
+    padding-left: 1.5rem;
+    font-size: 0.9375rem;
+}
+
+/* ==========================================================================
+   Article Content
+   ========================================================================== */
+
+.haiia-article-content {
+    background: #fff;
+    line-height: 1.85;
+    color: #334155;
+}
+
+.haiia-article-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 3rem 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid #335e4a;
+    letter-spacing: -0.01em;
+}
+
+.haiia-article-content h2:first-child {
+    margin-top: 0;
+}
+
+.haiia-article-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 2rem 0 1rem;
+    padding-left: 1rem;
+    border-left: 4px solid #335e4a;
+}
+
+.haiia-article-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 1.5rem 0 0.75rem;
+}
+
+.haiia-article-content p {
+    margin-bottom: 1.5rem;
+}
+
+.haiia-article-content ul,
+.haiia-article-content ol {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.haiia-article-content li {
+    margin-bottom: 0.5rem;
+}
+
+.haiia-article-content blockquote {
+    background: #f0f9ff;
+    border-left: 4px solid #335e4a;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 0.75rem 0.75rem 0;
+    font-style: italic;
+    color: #1e40af;
+}
+
+.haiia-article-content strong {
+    color: #1e293b;
+    font-weight: 700;
+}
+
+/* Key Point Box */
+.haiia-article-content .key-point,
+.haiia-article-content .haiia-key-point {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border: 2px solid #f59e0b;
+}
+
+.haiia-article-content .key-point h4,
+.haiia-article-content .haiia-key-point h4 {
+    color: #b45309;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    border: none;
+}
+
+/* Definition Box */
+.haiia-article-content .definition,
+.haiia-article-content .haiia-definition {
+    background: #f0fdf4;
+    border: 2px solid #22c55e;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.haiia-article-content .definition h4,
+.haiia-article-content .haiia-definition h4 {
+    color: #15803d;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    border: none;
+}
+
+/* ==========================================================================
+   FAQ Section
+   ========================================================================== */
+
+.haiia-article-faq {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.haiia-article-faq h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.haiia-article-faq h2::before {
+    content: "❓";
+}
+
+.haiia-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.haiia-faq-item {
+    background: #f8fafc;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.haiia-faq-question {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1e293b;
+    list-style: none;
+}
+
+.haiia-faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.haiia-faq-q-icon {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    background: #335e4a;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.875rem;
+}
+
+.haiia-faq-q-text {
+    flex: 1;
+}
+
+.haiia-faq-toggle {
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    color: #64748b;
+}
+
+.haiia-faq-item[open] .haiia-faq-toggle {
+    transform: rotate(180deg);
+}
+
+.haiia-faq-answer {
+    display: flex;
+    gap: 1rem;
+    padding: 0 1.25rem 1.25rem;
+    color: #475569;
+    line-height: 1.7;
+}
+
+.haiia-faq-a-icon {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    background: #f59e0b;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.875rem;
+}
+
+.haiia-faq-a-text {
+    flex: 1;
+}
+
+/* ==========================================================================
+   Summary Section
+   ========================================================================== */
+
+.haiia-article-summary {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    margin-top: 2rem;
+    border: 2px solid #335e4a;
+}
+
+.haiia-article-summary h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1e40af;
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.haiia-article-summary h2::before {
+    content: "📝";
+}
+
+.haiia-summary-content {
+    color: #1e40af;
+    line-height: 1.7;
+}
+
+.haiia-summary-content ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.haiia-summary-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Related Articles
+   ========================================================================== */
+
+.haiia-article-related {
+    margin-top: 3rem;
+}
+
+.haiia-article-related h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 1.5rem;
+}
+
+.haiia-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.haiia-related-item {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s;
+}
+
+.haiia-related-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.haiia-related-thumb img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.haiia-related-item h4 {
+    padding: 1rem;
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   CTA Section
+   ========================================================================== */
+
+.haiia-article-cta {
+    background: linear-gradient(135deg, #1a3d2e 0%, #1a3d2e 100%);
+    border-radius: 1rem;
+    padding: 3rem;
+    margin-top: 3rem;
+    text-align: center;
+    color: #fff;
+}
+
+.haiia-article-cta h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 1rem;
+}
+
+.haiia-article-cta p {
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+}
+
+.haiia-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.haiia-cta-primary {
+    background: #fff;
+    color: #1a3d2e;
+    padding: 0.875rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.haiia-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.haiia-cta-secondary {
+    background: transparent;
+    color: #fff;
+    padding: 0.875rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.2s;
+}
+
+.haiia-cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .haiia-article-header {
+        padding: 3rem 0 2rem;
+    }
+
+    .haiia-article-entry {
+        padding: 2rem 0;
+    }
+
+    .haiia-article-content {
+        padding: 1.5rem;
+    }
+
+    .haiia-article-faq,
+    .haiia-article-summary {
+        padding: 1.5rem;
+    }
+
+    .haiia-article-cta {
+        padding: 2rem 1.5rem;
+    }
+
+    .haiia-author-detail {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .haiia-author-bio {
+        text-align: center;
+    }
+
+    .haiia-author-credentials-list {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .haiia-article-meta-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .haiia-article-dates {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .haiia-cta-buttons {
+        flex-direction: column;
+    }
+
+    .haiia-cta-primary,
+    .haiia-cta-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}
